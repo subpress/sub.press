@@ -1,0 +1,157 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; /* Base font size for rem units */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif, Arial, sans-serif;
+  background-color: #FFEB3B;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #333;
+  text-align: center;
+}
+
+.landing-container {
+  text-align: center;
+  width: 100%;
+  max-width: 40rem; /* Adjusted to rem */
+  padding: 0 1.5em 1.5em; /* Add consistent padding for alignment */
+}
+
+.logo {
+  width: 16rem; /* Adjusted to rem */
+  height: auto;
+  margin-bottom: 1rem; /* Space below logo */
+}
+
+h1.tagline {
+  font-family: 'Sora', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+h2.description {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 300;
+  color: #333;
+  padding: 0 1.5rem;
+  margin: 0 auto 2rem;
+}
+
+h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type="email"], button {
+  padding: 0.8rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 20rem;
+  border-radius: 4px;
+  border: none;
+}
+
+input[type="email"] {
+  margin-bottom: 1.5rem; /* Increased space between field and button */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+button {
+  background-color: #000;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem; /* Adds space between the input field and the button */
+}
+
+button:hover {
+  background-color: #555;
+}
+
+button:focus {
+  outline: 2px solid #FFEB3B;
+  outline-offset: 2px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 37.5em) { /* 600px */
+  h1.tagline {
+      font-size: 2rem;
+  }
+
+  h2.description {
+      font-size: 0.9rem;
+  }
+
+  .logo {
+      width: 12rem;
+  }
+
+  /* Adjust form input and button for smaller devices */
+  input[type="email"], button {
+      padding: 0.6rem;
+      font-size: 0.9rem;
+      max-width: 18rem; /* Make input and button smaller */
+  }
+
+  button {
+      margin-top: 0.8rem; /* Adjust the margin for smaller screens */
+  }
+}
+
+@media (max-width: 25em) { /* 400px */
+  h1.tagline {
+      font-size: 1.8rem;
+  }
+
+  h2.description {
+      font-size: 0.8rem;
+  }
+
+  .logo {
+      width: 10rem;
+  }
+
+  /* Further adjust form input and button for very small screens */
+  input[type="email"], button {
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      max-width: 16rem; /* Reduce further for small devices */
+  }
+
+  button {
+      margin-top: 0.6rem; /* Adjust the margin for very small screens */
+  }
+}
