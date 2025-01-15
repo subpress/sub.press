@@ -1,0 +1,229 @@
+/* Structure */
+
+body {
+	background-color: #fff;
+}
+
+.wrapper {
+  display: block;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#footer {
+    position: fixed;
+    bottom: 40px;
+    z-index: 0;
+}
+
+.center {
+    text-align: center;
+}
+
+#content {
+    margin: auto;
+    padding: 50px 0px 100px 0px;
+    width: 50%;
+}
+
+#content img {
+    max-width: 100%;
+}
+
+#contentBody {
+    width: 80%;
+}
+
+.layup2 {
+    display: none;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: #fa3c33;
+   font-size:20px;
+    text-align: center;
+    text-decoration: underline;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  .active{
+  background-color: #fa3c33;
+  color: white;
+  }
+  li a:hover {
+    background-color: #000;
+    color: white;
+  }
+
+/* Chonks */
+
+.chunk {
+    padding: 20px 0px 20px 0px;
+}
+
+.smallChunk {
+    padding: 8px 0px 8px 0px;
+}
+
+.midChunk {
+    padding: 12px 0px 12px 0px;
+}
+
+.largeChunk {
+    padding: 40px 0px 40px 0px;
+}
+
+.halfChonk {
+    display: flex;
+}
+
+.halfChonk > div {
+    flex: 1;
+    padding: 20px 24px 20px 0px;
+}
+
+.negChunk {
+    margin: -12px 0px -12px 0px;
+}
+
+/* Fonts */
+
+body {
+    font-family: 'Poppins', sans-serif;
+	font-size: 18px;
+    line-height: 1.4em;
+    color: #333333;
+}
+
+a {
+	text-decoration: none;
+	font-weight: 600;
+    color: #fa3c33;
+    text-decoration: underline;
+}
+
+a.inline {
+    padding: 0;
+    border: none;
+    background-color: rgba(44, 45, 47, .1);
+}
+
+a.inline:hover {
+    border: none;
+    text-decoration: underline;
+}
+
+a:hover, a:focus, .swappie:hover, #email:hover {
+	color: #000;
+    background-color: rgba(44, 45, 47, .1);
+    text-decoration: underline;
+}
+
+h1 {
+	font-size: 56px;
+	color: #fa3c33;
+    font-weight: 600;
+    line-height: 1.25em;
+    margin: 0;
+}
+
+h2 {
+	font-size: 32px;
+	color: #333333;
+	font-weight: 800;
+	line-height: 1.3em;
+    margin: 0;
+}
+
+h3 {
+	font-size: 20px;
+	color: #fa3c33;
+	font-weight: 600;
+	line-height: 1.75em;
+    margin: 0;
+}
+
+h4 {
+    font-size: 20px;
+    color: #565459;
+    font-weight: 400;
+    line-height:1.75em;
+    margin: 0;
+}
+
+h5 {
+    font-size: 16px;
+    color: #626163;
+    font-weight: 400;
+    line-height: 1.6em;
+    margin: 0px;
+}
+
+/* Responsive Rules */
+
+
+/* Tablet */
+
+@media only screen and (max-width: 768px) {     
+
+    #content {
+        left: 200px;
+        width: 75%;
+    }
+
+    .layup1{
+        display: none;
+      }
+   
+    .layup2{
+        display: block;
+      }
+
+}
+
+/* Mobile */
+
+@media only screen and (max-width: 400px) {
+
+    #content {
+        top: 80px;
+        width: 75%;
+        left: 24%;
+    }
+    
+    .halfChonk {
+        display: initial;
+        width: 100%;
+    }
+
+    .halfChonk > div {
+        padding: 20px 0px 20px 0px;
+    }
+
+    .layup1{
+        display: none;
+      }
+   
+    .layup2{
+        display: block;
+      }
+    
+}
