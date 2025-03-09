@@ -118,7 +118,7 @@ p {
 hr {
   width: 30%;
   border: 0;
-  border-top: 2px solid #000;
+  border-top: 2px solid #333;
   margin: 2rem auto;
   border-radius: 1rem;
 }
