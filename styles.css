@@ -27,7 +27,7 @@ body {
 .landing-container {
   text-align: center;
   width: 100%;
-  max-width: 40rem;
+  max-width: 50rem; /* Increased container width on larger screens */
   padding: 0 1.5em 1.5em;
 }
 
@@ -48,14 +48,18 @@ h1.tagline {
   letter-spacing: 0.05em;
 }
 
-h2.description {
+h2 {
   font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
+  font-size: 1.2rem; /* Updated to make it stand out */
   line-height: 1.6;
-  font-weight: 300;
+  font-weight: 600;
   color: #333;
-  padding: 0 1.5rem;
-  margin: 0 auto 2rem;
+  margin-bottom: 2rem;
+}
+
+h2.description {
+  font-size: 1rem;
+  font-weight: 300;
 }
 
 h3 {
@@ -110,4 +114,87 @@ button:hover {
 }
 
 button:focus {
-  outline: 2px solid #FFEB
+  outline: 2px solid #FFEB3B;
+  outline-offset: 2px;
+}
+
+.instagram-link {
+  display: inline-block;
+  margin-top: 2rem;
+}
+
+.instagram-link img {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 37.5em) {
+  h1.tagline {
+      font-size: 2rem;
+  }
+
+  h2.description {
+      font-size: 0.9rem;
+  }
+
+  .logo {
+      width: 12rem;
+  }
+
+  input[type="email"], button {
+      padding: 0.6rem;
+      font-size: 0.9rem;
+      max-width: 18rem;
+  }
+
+  button {
+      margin-top: 0.8rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  h2 {
+    font-size: 1.1rem; /* Slightly bigger on mobile for emphasis */
+  }
+
+  h1.tagline,
+  .logo {
+    font-size: 1.6rem;
+    width: 8rem; /* Reduce logo size on mobile */
+  }
+}
+
+@media (max-width: 25em) {
+  h1.tagline {
+      font-size: 1.8rem;
+  }
+
+  h2.description {
+      font-size: 0.8rem;
+  }
+
+  .logo {
+      width: 10rem;
+  }
+
+  input[type="email"], button {
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      max-width: 16rem;
+  }
+
+  button {
+      margin-top: 0.6rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  h2 {
+    font-size: 1rem; /* Smaller on smaller screens */
+  }
+}
