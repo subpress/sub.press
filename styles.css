@@ -106,6 +106,13 @@ p {
   height: 2rem;
 }
 
+hr {
+  width: 80%;
+  border: 0;
+  border-top: 1px solid #333;
+  margin: 2rem auto;
+}
+
 @media (max-width: 37.5em) {
   h1.tagline {
     font-size: 2rem;
