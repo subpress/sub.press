@@ -50,7 +50,7 @@ h1.tagline {
 
 h2 {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.2rem; /* Updated to make it stand out */
+  font-size: 1.2rem; 
   line-height: 1.6;
   font-weight: 600;
   color: #333;
@@ -120,12 +120,12 @@ button:focus {
 
 .instagram-link {
   display: inline-block;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .instagram-link img {
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;  /* Reduced size */
+  height: 2rem; /* Reduced size */
 }
 
 /* Responsive Adjustments */
@@ -163,7 +163,7 @@ button:focus {
   h1.tagline,
   .logo {
     font-size: 1.6rem;
-    width: 8rem; /* Reduce logo size on mobile */
+    width: 8rem; 
   }
 }
 
@@ -195,6 +195,6 @@ button:focus {
   }
 
   h2 {
-    font-size: 1rem; /* Smaller on smaller screens */
+    font-size: 1rem;
   }
 }
