@@ -4,13 +4,12 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
     line-height: 1.4em;
-    color: #333;
+    color: #333333;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Ensures full height without viewport issues */
+    height: 100vh; /* Center vertically */
     margin: 0;
-    padding: 0;
 }
 
 /* Centering the content */
@@ -21,7 +20,6 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    padding: 10px; /* Prevents content from touching screen edges */
 }
 
 #content {
@@ -47,28 +45,24 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 100%;
+    max-width: 400px;
 }
 
-/* Button */
 button {
     background: none;
     border: none;
-    font-size: 22px;
+    font-size: 18px;
     cursor: pointer;
-    padding: 10px;
 }
 
-/* Seek Bar */
 input[type="range"] {
     flex-grow: 1;
-    width: 100%;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     #content {
-        width: 90%;
+        width: 80%;
     }
 }
 
@@ -77,12 +71,6 @@ input[type="range"] {
         flex-direction: column;
         gap: 15px;
         padding: 20px;
-        width: 100%;
-    }
-
-    button {
-        font-size: 24px;
-        padding: 12px;
     }
 
     input[type="range"] {
