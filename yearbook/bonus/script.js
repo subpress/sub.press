@@ -1,49 +1,35 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const mediaElements = document.querySelectorAll("audio, video");
-    const playButtons = document.querySelectorAll(".playPause");
-    const seekBars = document.querySelectorAll(".seekBar");
-    const currentTimeDisplays = document.querySelectorAll(".currentTime");
-    const durationDisplays = document.querySelectorAll(".duration");
+const audio = document.getElementById("audio");
+const playPauseBtn = document.getElementById("playPause");
+const seekBar = document.getElementById("seekBar");
+const currentTimeDisplay = document.getElementById("currentTime");
+const durationDisplay = document.getElementById("duration");
 
-    mediaElements.forEach((media, index) => {
-        const playButton = playButtons[index];
-        const seekBar = seekBars[index];
-        const currentTimeDisplay = currentTimeDisplays[index];
-        const durationDisplay = durationDisplays[index];
-
-        // Update duration when metadata is loaded
-        media.addEventListener("loadedmetadata", () => {
-            durationDisplay.textContent = formatTime(media.duration);
-            seekBar.max = media.duration;
-        });
-
-        // Play/Pause Button
-        playButton.addEventListener("click", () => {
-            if (media.paused) {
-                media.play();
-                playButton.textContent = "❚❚";
-            } else {
-                media.pause();
-                playButton.textContent = "▶";
-            }
-        });
-
-        // Update seek bar and time display
-        media.addEventListener("timeupdate", () => {
-            seekBar.value = media.currentTime;
-            currentTimeDisplay.textContent = formatTime(media.currentTime);
-        });
-
-        // Seek functionality
-        seekBar.addEventListener("input", () => {
-            media.currentTime = seekBar.value;
-        });
-
-        // Format time function
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
-        }
-    });
+playPauseBtn.addEventListener("click", () => {
+    if (audio.paused) {
+        audio.play();
+        playPauseBtn.textContent = "⏸";
+    } else {
+        audio.pause();
+        playPauseBtn.textContent = "▶";
+    }
 });
+
+audio.addEventListener("loadedmetadata", () => {
+    durationDisplay.textContent = formatTime(audio.duration);
+    seekBar.max = audio.duration;
+});
+
+audio.addEventListener("timeupdate", () => {
+    seekBar.value = audio.currentTime;
+    currentTimeDisplay.textContent = formatTime(audio.currentTime);
+});
+
+seekBar.addEventListener("input", () => {
+    audio.currentTime = seekBar.value;
+});
+
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60).toString().padStart(2, "0");
+    return `${minutes}:${secs}`;
+}
