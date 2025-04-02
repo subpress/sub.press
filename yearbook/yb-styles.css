@@ -1,38 +1,23 @@
-/* Structure */
-body {
-    background-color: #fff;
-    font-family: 'Poppins', sans-serif;
-    font-size: 18px;
-    line-height: 1.4em;
-    color: #333333;
+/* Keep the original styles unchanged */
+
+/* Center the audio player only on the audio page */
+.audio-page, .video-page {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Center vertically */
+    height: 100vh; /* Centers vertically */
     margin: 0;
 }
 
-/* Centering the content */
-.wrapper {
+/* Audio Player Styles */
+.audio-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
 }
 
-#content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 400px;
-}
-
-/* Audio Player */
 .audio-container {
-    width: 100%;
     text-align: center;
 }
 
@@ -44,7 +29,7 @@ body {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 90%;
     max-width: 400px;
 }
 
@@ -59,9 +44,28 @@ input[type="range"] {
     flex-grow: 1;
 }
 
+/* Video Player Styles */
+.video-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.video-container {
+    text-align: center;
+}
+
+video {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    #content {
+    .audio-player, video {
         width: 80%;
     }
 }
