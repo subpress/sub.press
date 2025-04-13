@@ -1,3 +1,8 @@
+/* Global Reset */
+* {
+    box-sizing: border-box;
+}
+
 /* Structure */
 body {
     background-color: #fff;
@@ -11,6 +16,7 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* Prevents horizontal overflow */
 }
 
 /* Centering the content */
@@ -20,7 +26,7 @@ body {
     align-items: center;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
     padding: 10px;
 }
 
@@ -41,7 +47,7 @@ body {
 .audio-player {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Ensures even spacing */
+    justify-content: space-between;
     gap: 10px;
     background: #f5f5f5;
     padding: 15px;
@@ -55,17 +61,25 @@ body {
 button {
     background: none;
     border: none;
-    font-size: 22px;
     cursor: pointer;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button svg {
+    width: 24px;
+    height: 24px;
+    fill: #333;
 }
 
 /* Time Display */
 .time-container {
     display: flex;
     align-items: center;
-    gap: 5px; /* Ensures small space between */
-    white-space: nowrap; /* Prevents wrapping */
+    gap: 5px;
+    white-space: nowrap;
     font-size: 16px;
 }
 
@@ -90,9 +104,9 @@ input[type="range"] {
         width: 100%;
     }
 
-    button {
-        font-size: 24px;
-        padding: 12px;
+    button svg {
+        width: 28px;
+        height: 28px;
     }
 
     input[type="range"] {
@@ -100,6 +114,6 @@ input[type="range"] {
     }
 
     .time-container {
-        justify-content: center; /* Ensures proper alignment on small screens */
+        justify-content: center;
     }
 }

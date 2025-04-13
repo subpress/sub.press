@@ -11,7 +11,12 @@
         <div id="content">
             <div class="audio-container">
                 <div class="audio-player">
-                    <button id="playPause">▶</button>
+                    <button id="playPause" aria-label="Play/Pause">
+                        <!-- SVG Play Icon -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </button>
                     <div class="time-container">
                         <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
                     </div>
