@@ -1,0 +1,59 @@
+/* Global Reset */
+* {
+    box-sizing: border-box;
+}
+
+/* Base styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-container {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.video-wrapper {
+    flex: 1 1 45%;
+    min-width: 300px;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+    .video-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .video-wrapper {
+        width: 100%;
+    }
+}
