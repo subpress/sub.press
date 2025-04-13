@@ -1,71 +1,46 @@
-/* Structure */
 body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     background-color: #fff;
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
     line-height: 1.4em;
     color: #333333;
-    margin: 0;
-    padding: 0;
 }
 
-.wrapper {
-    display: block;
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-}
-
-#content {
-    margin: auto;
-    padding: 50px 0px 100px 0px;
-    width: 50%;
+.container {
     text-align: center;
+    padding: 40px 20px;
 }
 
-@media (max-width: 768px) {
-    #content {
-        width: 80%;
-    }
-}
-
-@media (max-width: 480px) {
-    #content {
-        width: 90%;
-    }
-}
-
-/* Headings */
 h1 {
-    font-size: 56px;
+    margin-bottom: 30px;
+    font-size: 28px;
     color: #fa3c33;
-    font-weight: 600;
-    line-height: 1.25em;
-    margin-bottom: 40px;
 }
 
-/* Lists */
-ul {
-    list-style-type: none;
+.link-list {
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
-li a {
-    display: block;
-    color: #fa3c33;
-    font-size: 20px;
-    text-align: center;
-    text-decoration: underline;
-    padding: 10px 20px;
-    transition: background-color 0.3s, color 0.3s;
+.link-list li {
+    margin-bottom: 20px;
 }
 
-li a:hover {
-    background-color: #000;
-    color: white;
+.link-list a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #fa3c33;
+    transition: color 0.3s;
+}
+
+.link-list a:hover {
+    color: #000;
+    text-decoration: underline;
 }
