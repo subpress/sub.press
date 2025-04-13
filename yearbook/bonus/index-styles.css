@@ -34,7 +34,7 @@ h1 {
 }
 
 .link-list a {
-    text-decoration: none;
+    text-decoration: underline;
     font-size: 20px;
     color: #fa3c33;
     transition: color 0.3s;
@@ -42,5 +42,5 @@ h1 {
 
 .link-list a:hover {
     color: #000;
-    text-decoration: underline;
+    text-decoration: none;
 }
