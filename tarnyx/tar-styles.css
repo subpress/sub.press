@@ -54,10 +54,10 @@ h1.tagline {
   font-size: 3.6rem;
   font-weight: 900;
   line-height: 1.2;
-  margin-bottom: 2rem;
+  margin-bottom: 3.7rem;
   color: #FFEB3B;
   text-transform: uppercase;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.5rem;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -177,7 +177,6 @@ hr {
     display: flex;
     gap: 12px;
     flex-direction: column;
-    width: 250px;
     align-items: center;
     justify-content: center;
     font-family: Arial, sans-serif;
@@ -188,7 +187,7 @@ hr {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-    width: 250px;
+    width: 400px;
 }
 
 .submit-btn {
