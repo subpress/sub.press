@@ -171,42 +171,35 @@ hr {
   h2 {
     font-size: 1rem;
   }
-/* Center the form on the page */
-.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;   /* full page height */
 }
 
-/* Vertical layout */
 .input-form {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
 }
 
-/* Input styling */
 .text-input {
     padding: 10px;
-    width: 250px;
-    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 16px;
+    width: 250px;
 }
 
-/* Button styling */
 .submit-btn {
     padding: 10px 18px;
-    font-size: 16px;
-    background-color: #4CAF50;
+    background-color: #FFEB3B;
     color: white;
     border: none;
     border-radius: 4px;
+    font-size: 16px;
     cursor: pointer;
 }
 
 .submit-btn:hover {
-    background-color: #45a049;
+    background-color: #333;
 }
+
