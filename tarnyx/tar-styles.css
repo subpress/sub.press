@@ -51,13 +51,13 @@ a:hover {
 
 h1.tagline {
   font-family: 'Sora', sans-serif;
-  font-size: 3rem;
+  font-size: 3.6rem;
   font-weight: 900;
   line-height: 1.2;
   margin-bottom: 2rem;
   color: #FFEB3B;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.4em;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -175,7 +175,9 @@ hr {
 
 .input-form {
     display: flex;
-    gap: 10px;
+    gap: 12px;
+    flex-direction: column;
+    width: 250px;
     align-items: center;
     justify-content: center;
     font-family: Arial, sans-serif;
@@ -192,10 +194,11 @@ hr {
 .submit-btn {
     padding: 10px 18px;
     background-color: #FFEB3B;
-    color: #000;
+    color: #333;
     border: none;
     border-radius: 4px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
 }
 
