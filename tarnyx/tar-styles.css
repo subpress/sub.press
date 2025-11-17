@@ -11,13 +11,13 @@ html {
 
 body {
   font-family: 'Poppins', sans-serif, Arial, sans-serif;
-  background-color: #FFEB3B;
+  background-color: #000;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  color: #333;
+  color: #FFEB3B;
   text-align: center;
   padding-top: 5rem;
   padding-bottom: 5rem;
@@ -33,7 +33,7 @@ a {
 }
 
 a:hover {
-  color: #000;
+  color: #fff;
 }
 
 .landing-container {
@@ -55,7 +55,7 @@ h1.tagline {
   font-weight: 900;
   line-height: 1.2;
   margin-bottom: 2rem;
-  color: #000;
+  color: #FFEB3B;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   max-width: 100%;
@@ -68,7 +68,7 @@ h2 {
   font-size: 1.2rem;
   line-height: 1.6;
   font-weight: 600;
-  color: #333;
+  color: #FFEB3B;
   margin-bottom: 1rem;
 }
 
@@ -83,7 +83,7 @@ h3 {
   font-weight: 900;
   line-height: 1.2;
   margin-bottom: 1.5rem;
-  color: #000;
+  color: #FFEB3B;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -92,7 +92,7 @@ h4 {
   font-family: 'Poppins', sans-serif;
   font-size: 0.8rem; 
   font-weight: 300;
-  color: #333; 
+  color: #FFEB3B; 
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
@@ -118,7 +118,7 @@ p {
 hr {
   width: 30%;
   border: 0;
-  border-top: 2px solid #333;
+  border-top: 2px solid #FFEB3B;
   margin: 2rem auto;
   border-radius: 1rem;
 }
