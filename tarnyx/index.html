@@ -2,25 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta-name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tar-styles.css">
   <title>TARNYX</title>
 </head>
+
 <body>
   <div class="landing-container">
-    <h1 class="tagline">
-      TARNYX
-    </h1>
-<form class="input-form">
-    <input type="text" placeholder="Enter number" class="text-input">
-    <p></p>
-    <a href="/tarnyx/result.html" class="submit-btn">Search</a>
-</form>
+    <h1 class="tagline">TARNYX</h1>
 
-    </div>
+    <form class="input-form" action="/tarnyx/result.html" method="GET">
+        <input type="text" name="number" placeholder="Enter number" class="text-input">
+        <button type="submit" class="submit-btn">Search</button>
+    </form>
+
   </div>
-
 </body>
 </html>
