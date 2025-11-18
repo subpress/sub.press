@@ -67,6 +67,7 @@ h1.tagline {
   border: 1px solid #ccc;
   border-radius: 8px;
   margin-bottom: 3.2rem;
+  font-family: 'Space Mono', monospace;
 }
 
 /* SUBMIT BUTTON */
@@ -79,6 +80,7 @@ h1.tagline {
   font-size: 32px;
   font-weight: bold;
   cursor: pointer;
+  font-family: 'Sora', sans-serif;
 }
 
 .submit-btn:hover {
