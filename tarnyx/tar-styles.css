@@ -87,3 +87,63 @@ h1.tagline {
   background-color: #333;
   color: #fff;
 }
+
+/* RESULTS PAGE LAYOUT ---------------------------------- */
+
+.results-container {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.results-number {
+  font-family: 'Space Mono', monospace;
+  font-size: 4rem;
+  font-weight: 700;
+  text-align: center;
+  color: #FFEB3B;
+  margin-bottom: 3rem;
+}
+
+/* Two-column split */
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+/* Left column */
+.results-info p {
+  font-size: 1.2rem;
+  color: #FFEB3B;
+  margin-bottom: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Right column (map placeholder) */
+.results-map {
+  background-color: #111;
+  border: 2px solid #FFEB3B;
+  border-radius: 8px;
+  min-height: 400px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 1.5rem;
+  color: #FFEB3B;
+}
+
+/* Mobile responsive behavior */
+@media (max-width: 50rem) {
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .results-map {
+    min-height: 300px;
+    margin-top: 2rem;
+  }
+}
+
