@@ -60,24 +60,26 @@ body {
 .label {
   font-weight: 600;
   color: #FFEB3B;
-  min-width: 100px; /* optional: makes labels line up neatly */
+  min-width: 150px;
+  font-size: 24px;
 }
 
 .value {
   font-weight: 400;
   color: #FFEB3B;
+  font-size:24px;
 }
 
 /* MONITOR BUTTON */
 .monitor-btn {
   margin-top: 2rem;
   padding: 14px 26px;
-  background-color: #FFEB3B;
-  color: #333;
+  background-color: none;
+  color: #FFEB3B;
   font-size: 1.2rem;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  border: none;
+  border: 2px #FFEB3B;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.2s ease;
