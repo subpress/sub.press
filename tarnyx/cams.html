@@ -3,51 +3,120 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="tar-styles.css">
-  <title>Monitor Subject</title>
+  <title>TARNYX - Monitor Cams</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      color: #FFEB3B;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .cams-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 1rem;
+      width: 100vw;
+      height: 100vh;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+
+    .cam-box {
+      position: relative;
+      background-color: #111;
+      border: 2px solid #FFEB3B;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cam-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cam-label {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      background-color: rgba(0,0,0,0.6);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .cams-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .cams-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(9, 1fr);
+      }
+    }
+
+  </style>
 </head>
 <body>
-  <div class="camera-grid">
 
-    <div class="camera-cell">
+  <div class="cams-container">
+    <div class="cam-box">
       <span class="cam-label">CAM 01</span>
-      <img src="https://via.placeholder.com/400x300" alt="Camera 1">
+      <img src="/tarnyx/img/cam-placeholder.jpg" alt="CAM 01">
     </div>
-    <div class="camera-cell">
+    <div class="cam-box">
       <span class="cam-label">CAM 02</span>
-      <img src="https://via.placeholder.com/400x300" alt="Camera 2">
+      <img src="/tarnyx/img/cam-placeholder.jpg" alt="CAM 02">
     </div>
-    <div class="camera-cell">
+    <div class="cam-box">
       <span class="cam-label">CAM 03</span>
-      <img src="https://via.placeholder.com/400x300" alt="Camera 3">
+      <img src="/tarnyx/img/cam-placeholder.jpg" alt="CAM 03">
     </div>
-    <div class="camera-cell">
+    <div class="cam-box">
       <span class="cam-label">CAM 04</span>
-      <img src="https://via.placeholder.com/400x300" alt="Camera 4">
+      <img src="/tarnyx/img/cam-placeholder.jpg" alt="CAM 04">
     </div>
-    <div class="camera-cell">
+    <div class="cam-box">
       <span class="cam-label">CAM 05</span>
-      <img src="https://via.placeholder.com/400x300" alt="Camera 5">
+      <img src="/tarnyx/img/cam-placeholder.jpg" alt="CAM 05">
     </div>
-    <div class="camera-cell">
+    <div class="cam-box">
       <span class="cam-label">CAM 06</span>
-      <img src="https://via.placeholder.com/400x300" alt="Camera 6">
+      <img src="/tarnyx/img/cam-placeholder.jpg" alt="CAM 06">
     </div>
-    <div class="camera-cell">
+    <div class="cam-box">
       <span class="cam-label">CAM 07</span>
-      <img src="https://via.placeholder.com/400x300" alt="Camera 7">
+      <img src="/tarnyx/img/cam-placeholder.jpg" alt="CAM 07">
     </div>
-    <div class="camera-cell">
+    <div class="cam-box">
       <span class="cam-label">CAM 08</span>
-      <img src="https://via.placeholder.com/400x300" alt="Camera 8">
+      <img src="/tarnyx/img/cam-placeholder.jpg" alt="CAM 08">
     </div>
-    <div class="camera-cell">
+    <div class="cam-box">
       <span class="cam-label">CAM 09</span>
-      <img src="https://via.placeholder.com/400x300" alt="Camera 9">
+      <img src="/tarnyx/img/cam-placeholder.jpg" alt="CAM 09">
     </div>
-
   </div>
+
 </body>
 </html>
