@@ -95,8 +95,8 @@ h1.tagline {
 }
 
 .btn-outlined:hover {
-  background-color: #333;
-  color: #FFF;
+  background-color: #FFEB3B;
+  color: #000;
 }
 
 /* RESULTS PAGE LAYOUT */
