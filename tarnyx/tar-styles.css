@@ -183,20 +183,20 @@ hr {
 }
 
 .text-input {
-    padding: 20px;
+    padding: 24px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 40px;
-    width: 600px;
+    font-size: 36px;
+    width: 700px;
 }
 
 .submit-btn {
-    padding: 10px 18px;
+    padding: 18px 32px;
     background-color: #FFEB3B;
     color: #333;
     border: none;
-    border-radius: 4px;
-    font-size: 36px;
+    border-radius: 8px;
+    font-size: 32px;
     font-weight: bold;
     cursor: pointer;
 }
