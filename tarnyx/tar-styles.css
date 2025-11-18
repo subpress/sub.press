@@ -113,7 +113,11 @@ h1.tagline {
   gap: 3rem;
 }
 
-/* Left column */
+/* LEFT COLUMN */
+.results-info {
+  text-align: left;          /* ← Ensures left alignment */
+}
+
 .results-info p {
   font-size: 1.2rem;
   color: #FFEB3B;
@@ -121,29 +125,25 @@ h1.tagline {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Right column (map placeholder) */
+/* RIGHT COLUMN (Map) */
 .results-map {
   background-color: #111;
   border: 2px solid #FFEB3B;
   border-radius: 8px;
-  min-height: 400px; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Space Mono', monospace;
-  font-size: 1.5rem;
-  color: #FFEB3B;
+  min-height: 400px;
+  overflow: hidden;         /* ← makes iframe corners match */
 }
 
-/* Mobile responsive behavior */
+/* Mobile responsive */
 @media (max-width: 50rem) {
   .results-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .results-map {
     min-height: 300px;
     margin-top: 2rem;
   }
 }
+
 
