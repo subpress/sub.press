@@ -63,6 +63,23 @@ h1.tagline {
 #cursor { display: inline-block; width: 1ch; color: #FFEB3B; animation: blink 1s infinite; }
 @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
 
+/* Spinner */
+.spinner {
+  display: none;
+  margin-top: 2rem;
+  width: 50px;
+  height: 50px;
+  border: 5px solid #FFEB3B;
+  border-top: 5px solid #000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 /* RESULTS PAGE */
 .results-container { width: 100%; max-width: 80rem; margin: 0 auto; }
 .results-number {
