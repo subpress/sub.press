@@ -146,4 +146,26 @@ h1.tagline {
   }
 }
 
+/* Monitor Button -------------------------------------- */
+
+.monitor-btn {
+  margin-top: 2rem;
+  padding: 14px 26px;
+  background-color: #FFEB3B;
+  color: #333;
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.monitor-btn:hover {
+  background-color: #333;
+  color: #FFF;
+}
+
+
 
