@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta-name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
@@ -11,14 +13,82 @@
 </head>
 
 <body>
-  <div class="landing-container">
+  <div class="landing-container" id="landing">
     <h1 class="tagline">TARNYX</h1>
 
-    <form class="input-form" action="/tarnyx/result.html" method="GET">
-        <input type="text" name="number" placeholder="Enter number" class="text-input">
-        <button type="submit" class="btn-filled">Search</button>
+    <form class="input-form" id="search-form">
+      <input type="text" id="phone-input" name="number" placeholder="Enter number" class="text-input">
+      <button type="submit" class="btn-filled">Search</button>
     </form>
-
   </div>
+
+  <!-- Loader / Typewriter -->
+  <div class="loader" id="loader">
+    <h1 class="results-number">
+      <span id="number-text"></span><span id="cursor">|</span>
+    </h1>
+  </div>
+
+  <!-- Results Page -->
+  <div class="results-container" id="results">
+    <h1 class="results-number" id="results-number">0726324664</h1>
+
+    <div class="results-grid">
+      <div class="results-info">
+        <div class="info-row"><span class="label">Name:</span> <span class="value">Sheridan, Gabriella</span></div>
+        <div class="info-row"><span class="label">Age:</span> <span class="value">30</span></div>
+        <div class="info-row"><span class="label">Height:</span> <span class="value">6'2"</span></div>
+        <div class="info-row"><span class="label">Weight:</span> <span class="value">80kg</span></div>
+        <div class="info-row"><span class="label">Occupation:</span> <span class="value">Kindergarten Teacher</span></div>
+        <div class="info-row"><span class="label">Status:</span> <span class="value">Unemployed</span></div>
+        <div class="info-row"><span class="label">Address:</span> <span class="value">3C Opposite Apartment Street, London RH10</span></div>
+        <button class="btn-outlined">Monitor subject live</button>
+      </div>
+
+      <div class="results-map">
+        <img src="/tarnyx/img/map.jpg" alt="Map">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('search-form');
+    const input = document.getElementById('phone-input');
+    const landing = document.getElementById('landing');
+    const loader = document.getElementById('loader');
+    const results = document.getElementById('results');
+    const numberText = document.getElementById('number-text');
+    const resultsNumber = document.getElementById('results-number');
+
+    loader.style.display = 'none';
+    results.style.display = 'none';
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const number = input.value.trim();
+      if (!number) return;
+
+      landing.style.display = 'none';
+      loader.style.display = 'flex';
+      numberText.textContent = '';
+
+      let currentIndex = 0;
+      const typingSpeed = 150;
+
+      const typeInterval = setInterval(() => {
+        numberText.textContent += number[currentIndex];
+        currentIndex++;
+        if (currentIndex >= number.length) clearInterval(typeInterval);
+      }, typingSpeed);
+
+      const totalLoaderTime = number.length * typingSpeed + 500;
+
+      setTimeout(() => {
+        loader.style.display = 'none';
+        resultsNumber.textContent = number;
+        results.style.display = 'block';
+      }, totalLoaderTime);
+    });
+  </script>
 </body>
 </html>
