@@ -105,7 +105,7 @@ h1.tagline {
   background-color: #111; border-radius: 8px; min-height: 400px; overflow: hidden;
   display: flex; justify-content: center; align-items: center;
 }
-.results-map img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+.results-map img { width: 100%; height: 100%; object-fit: cover; }
 
 /* MOBILE */
 @media (max-width: 50rem) {
@@ -113,57 +113,16 @@ h1.tagline {
   .results-map { min-height: 300px; margin-top: 2rem; }
 }
 
-/* CAMERA GRID */
-.camera-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 1rem;
-  width: 95vw;
-  height: 95vh;
-  margin: 2rem auto;
-}
-
-.camera-cell {
-  position: relative;
-  background-color: #111;
-  border: 2px solid #FFEB3B;
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.camera-cell img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.cam-label {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #FFEB3B;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-/* CAM GRID */
+/* CAMERA GRID DYNAMIC */
 .cams-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   gap: 1rem;
   width: 100vw;
   height: 100vh;
   padding: 1rem;
   box-sizing: border-box;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: minmax(150px, 1fr);
 }
 
 .cam-box {
@@ -175,12 +134,27 @@ h1.tagline {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .cam-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.cam-box span.alt-text {
+  position: absolute;
+  color: #FFEB3B;
+  font-weight: 600;
+  font-size: 1rem;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
 .cam-label {
@@ -197,14 +171,14 @@ h1.tagline {
 /* RESPONSIVE CAM GRID */
 @media (max-width: 1024px) {
   .cams-container {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-auto-rows: minmax(120px, 1fr);
   }
 }
 
 @media (max-width: 768px) {
   .cams-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(9, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-auto-rows: minmax(100px, 1fr);
   }
 }

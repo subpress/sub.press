@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tar-styles.css">
+  <title>TARNYX - Monitor Subject</title>
+</head>
+<body>
+  <div class="cams-container" id="camsContainer">
+    <!-- Cameras will be injected dynamically -->
+  </div>
+
+  <script>
+    const camsContainer = document.getElementById('camsContainer');
+    const totalCams = 9; // Change this number to add/remove cams
+
+    for (let i = 1; i <= totalCams; i++) {
+      const camBox = document.createElement('div');
+      camBox.className = 'cam-box';
+
+      // Label in top-left
+      const camLabel = document.createElement('span');
+      camLabel.className = 'cam-label';
+      camLabel.textContent = `CAM ${String(i).padStart(2, '0')}`;
+
+      // Image
+      const camImg = document.createElement('img');
+      camImg.src = '/tarnyx/img/cam-placeholder.jpg';
+      camImg.alt = '';
+
+      // Alt text centered
+      const altText = document.createElement('span');
+      altText.className = 'alt-text';
+      altText.textContent = `CAM ${String(i).padStart(2, '0')}`;
+
+      camBox.appendChild(camLabel);
+      camBox.appendChild(camImg);
+      camBox.appendChild(altText);
+      camsContainer.appendChild(camBox);
+    }
+  </script>
+</body>
+</html>
