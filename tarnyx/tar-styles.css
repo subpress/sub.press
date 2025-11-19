@@ -132,7 +132,8 @@ h1.tagline {
   text-align: center;
   aspect-ratio: 16/9;
   border: 2px solid #FFEB3B;
-  box-shadow: 0 0 15px #FFEB3B, 0 0 30px #FFEB3B33, inset 0 0 10px #FFEB3B22;
+  /* Removed outer glow, keeping only subtle inset */
+  box-shadow: inset 0 0 10px #FFEB3B22;
   animation: flicker var(--flicker-speed, 1.5s) infinite;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -201,13 +202,13 @@ h1.tagline {
   z-index: 3;
 }
 
-/* FLICKER ANIMATION */
+/* FLICKER ANIMATION (inset only) */
 @keyframes flicker {
   0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    box-shadow: 0 0 15px #FFEB3B, 0 0 30px #FFEB3B33, inset 0 0 10px #FFEB3B22;
+    box-shadow: inset 0 0 10px #FFEB3B22;
   }
   20%, 22%, 24%, 55% {
-    box-shadow: 0 0 25px #FFEB3B, 0 0 50px #FFEB3B55, inset 0 0 15px #FFEB3B33;
+    box-shadow: inset 0 0 15px #FFEB3B33;
   }
 }
 
