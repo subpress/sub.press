@@ -113,28 +113,36 @@ h1.tagline {
   .results-map { min-height: 300px; margin-top: 2rem; }
 }
 
-/* CAMERA GRID DYNAMIC */
+/* CAMERA GRID - CONTROL ROOM STYLE */
 .cams-container {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   width: 100vw;
   height: 100vh;
   padding: 1rem;
   box-sizing: border-box;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-auto-rows: minmax(150px, 1fr);
 }
 
 .cam-box {
   position: relative;
   background-color: #111;
-  border: 2px solid #FFEB3B;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  aspect-ratio: 16/9;
+  border: 2px solid #FFEB3B;
+  box-shadow: 0 0 15px #FFEB3B, 0 0 30px #FFEB3B33, inset 0 0 10px #FFEB3B22;
+  animation: flicker var(--flicker-speed, 1.5s) infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cam-box:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px #FFEB3B, 0 0 40px #FFEB3B55, inset 0 0 15px #FFEB3B33;
 }
 
 .cam-box img {
@@ -143,6 +151,7 @@ h1.tagline {
   object-fit: cover;
 }
 
+/* ALT TEXT CENTERED */
 .cam-box span.alt-text {
   position: absolute;
   color: #FFEB3B;
@@ -157,6 +166,7 @@ h1.tagline {
   text-align: center;
 }
 
+/* LABEL */
 .cam-label {
   position: absolute;
   top: 0.5rem;
@@ -166,19 +176,72 @@ h1.tagline {
   background-color: rgba(0,0,0,0.6);
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
+  z-index: 5;
+}
+
+/* CONTROL ROOM NOISE & SCANLINES */
+.cam-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    repeating-linear-gradient(
+      0deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02) 1px, transparent 1px, transparent 2px
+    ),
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><rect width="20" height="20" fill="white" fill-opacity="0.02"/></svg>');
+  background-size: 100% 2px, cover;
+  animation: noise var(--noise-speed, 0.2s) steps(2) infinite;
+  z-index: 2;
+}
+
+.cam-box::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 4px 4px;
+  animation: scan 3s linear infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* FLICKER ANIMATION */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    box-shadow: 0 0 15px #FFEB3B, 0 0 30px #FFEB3B33, inset 0 0 10px #FFEB3B22;
+  }
+  20%, 22%, 24%, 55% {
+    box-shadow: 0 0 25px #FFEB3B, 0 0 50px #FFEB3B55, inset 0 0 15px #FFEB3B33;
+  }
+}
+
+/* NOISE ANIMATION */
+@keyframes noise {
+  0%, 100% { background-position: 0 0, 0 0; }
+  50% { background-position: 5% 5%, 10% 10%; }
+}
+
+/* SCANLINE MOVEMENT */
+@keyframes scan {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(50%); }
 }
 
 /* RESPONSIVE CAM GRID */
 @media (max-width: 1024px) {
   .cams-container {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    grid-auto-rows: minmax(120px, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(140px, 1fr);
   }
 }
 
 @media (max-width: 768px) {
   .cams-container {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: minmax(100px, 1fr);
   }
 }
