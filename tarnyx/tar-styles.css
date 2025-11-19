@@ -11,7 +11,6 @@ body {
   align-items: center;
   min-height: 100vh;
   text-align: center;
-  padding: 5rem 0;
 }
 
 /* CONTAINER */
@@ -117,9 +116,7 @@ h1.tagline {
 .cams-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
   width: 100vw;
-  height: 100vh;
   padding: 1rem;
   box-sizing: border-box;
 }
@@ -138,11 +135,6 @@ h1.tagline {
   box-shadow: 0 0 15px #FFEB3B, 0 0 30px #FFEB3B33, inset 0 0 10px #FFEB3B22;
   animation: flicker var(--flicker-speed, 1.5s) infinite;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.cam-box:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 20px #FFEB3B, 0 0 40px #FFEB3B55, inset 0 0 15px #FFEB3B33;
 }
 
 .cam-box img {
