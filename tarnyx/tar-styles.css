@@ -112,129 +112,74 @@ h1.tagline {
   .results-map { min-height: 300px; margin-top: 2rem; }
 }
 
-/* CAMERA GRID - CONTROL ROOM STYLE */
-.cams-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+/* Fullscreen static image (camera feed) */
+.fullscreen-image {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100vw;
-  padding: 1rem;
-  box-sizing: border-box;
+  height: 100vh;
+  object-fit: cover;
+  background-color: #000;
 }
 
-.cam-box {
-  position: relative;
-  background-color: #111;
-  border-radius: 8px;
+/* ------------------------------- */
+/* HACKING VIDEO SCREEN */
+/* ------------------------------- */
+
+body.hacking-mode {
+  margin: 0;
+  padding: 0;
   overflow: hidden;
+  background: #000;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  aspect-ratio: 16/9;
-  border: 2px solid #FFEB3B;
-  /* Removed outer glow, keeping only subtle inset */
-  box-shadow: inset 0 0 10px #FFEB3B22;
-  animation: flicker var(--flicker-speed, 1.5s) infinite;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.cam-box img {
-  width: 100%;
-  height: 100%;
+.fullscreen-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
 }
 
-/* ALT TEXT CENTERED */
-.cam-box span.alt-text {
-  position: absolute;
+/* Continue button */
+.continue-btn {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1.2rem 2.5rem;
+  background-color: #FFEB3B;
+  color: #000;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-family: 'Sora', sans-serif;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+/* Hidden vs revealed state */
+.continue-btn.hidden {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.continue-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Hover effect */
+.continue-btn:hover {
+  background-color: #000;
   color: #FFEB3B;
-  font-weight: 600;
-  font-size: 1rem;
-  pointer-events: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-
-/* LABEL */
-.cam-label {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  font-weight: 600;
-  font-size: 1rem;
-  background-color: rgba(0,0,0,0.6);
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  z-index: 5;
-}
-
-/* CONTROL ROOM NOISE & SCANLINES */
-.cam-box::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: 
-    repeating-linear-gradient(
-      0deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02) 1px, transparent 1px, transparent 2px
-    ),
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><rect width="20" height="20" fill="white" fill-opacity="0.02"/></svg>');
-  background-size: 100% 2px, cover;
-  animation: noise var(--noise-speed, 0.2s) steps(2) infinite;
-  z-index: 2;
-}
-
-.cam-box::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 4px 4px;
-  animation: scan 3s linear infinite;
-  pointer-events: none;
-  z-index: 3;
-}
-
-/* FLICKER ANIMATION (inset only) */
-@keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    box-shadow: inset 0 0 10px #FFEB3B22;
-  }
-  20%, 22%, 24%, 55% {
-    box-shadow: inset 0 0 15px #FFEB3B33;
-  }
-}
-
-/* NOISE ANIMATION */
-@keyframes noise {
-  0%, 100% { background-position: 0 0, 0 0; }
-  50% { background-position: 5% 5%, 10% 10%; }
-}
-
-/* SCANLINE MOVEMENT */
-@keyframes scan {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(50%); }
-}
-
-/* RESPONSIVE CAM GRID */
-@media (max-width: 1024px) {
-  .cams-container {
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: minmax(140px, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .cams-container {
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: minmax(100px, 1fr);
-  }
+  border: 2px solid #FFEB3B;
 }

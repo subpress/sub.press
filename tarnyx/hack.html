@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/tarnyx/tar-styles.css">
+  <title>TARNYX – Accessing Feed...</title>
+</head>
+<body class="hacking-mode">
+
+  <!-- Fullscreen video -->
+  <video id="hackingVideo" class="fullscreen-video" autoplay muted playsinline>
+    <source src="/tarnyx/img/hack.mp4" type="video/mp4">
+  </video>
+
+  <!-- Button that appears after delay -->
+  <div id="continueButton" class="continue-btn hidden">
+    ENTER CAMERA FEED
+  </div>
+
+  <script>
+    // How long until button appears (ms)
+    const revealDelay = 6000;
+
+    const button = document.getElementById('continueButton');
+
+    setTimeout(() => {
+      button.classList.remove("hidden");
+      button.classList.add("visible");
+    }, revealDelay);
+
+    button.addEventListener("click", () => {
+      window.location.href = "/tarnyx/cams.html";
+    });
+  </script>
+
+</body>
+</html>
