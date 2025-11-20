@@ -47,24 +47,32 @@
       font-family: 'Sora', sans-serif;
       cursor: pointer;
       opacity: 0;
-      transition: opacity 1s ease;
       z-index: 10; /* appear on top of video */
     }
 
+    /* Hidden state */
     .continue-btn.hidden {
       pointer-events: none;
       opacity: 0;
     }
 
+    /* Visible state with continuous pulse */
     .continue-btn.visible {
-      opacity: 1;
       pointer-events: auto;
+      animation: pulseBtn 2.5s ease-in-out infinite;
     }
 
     .continue-btn:hover {
       background-color: #000;
       color: #FFEB3B;
       border: 2px solid #FFEB3B;
+    }
+
+    /* Smooth breathing pulse animation */
+    @keyframes pulseBtn {
+      0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.95); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+      100% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.95); }
     }
   </style>
 </head>
@@ -91,7 +99,7 @@
     }, revealDelay);
 
     button.addEventListener("click", () => {
-      window.location.href = "/tarnyx/monitor.html"; // go to static cam feed
+      window.location.href = "/tarnyx/feed.html"; // go to static cam feed
     });
   </script>
 
