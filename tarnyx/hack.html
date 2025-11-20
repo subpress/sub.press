@@ -6,23 +6,22 @@
   <link rel="stylesheet" href="/tarnyx/tar-styles.css">
   <title>TARNYX – Accessing Feed...</title>
 </head>
+
 <body class="hacking-mode">
 
-  <!-- Fullscreen video -->
+  <!-- Fullscreen hacking video -->
   <video id="hackingVideo" class="fullscreen-video" autoplay muted playsinline>
     <source src="/tarnyx/img/hack.mp4" type="video/mp4">
   </video>
 
-  <!-- Button that appears after delay -->
+  <!-- Timed reveal button -->
   <div id="continueButton" class="continue-btn hidden">
     ACCESS GRANTED
   </div>
 
   <script>
-    // How long until button appears (ms)
-    const revealDelay = 10000;
-
-    const button = document.getElementById('continueButton');
+    const revealDelay = 10000; // 10 seconds
+    const button = document.getElementById("continueButton");
 
     setTimeout(() => {
       button.classList.remove("hidden");
@@ -30,7 +29,7 @@
     }, revealDelay);
 
     button.addEventListener("click", () => {
-      window.location.href = "/tarnyx/monitor.html";
+      window.location.href = "/tarnyx/feed.html";
     });
   </script>
 

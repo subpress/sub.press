@@ -1,11 +1,33 @@
-/* RESET */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* -------------------------------------------------------
+   RESET
+------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* BASE */
+/* -------------------------------------------------------
+   BASE TYPOGRAPHY & COLORS
+------------------------------------------------------- */
+:root {
+  --yellow: #FFEB3B;
+  --black: #000;
+  --font-main: 'Poppins', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-head: 'Sora', sans-serif;
+}
+
 body {
-  font-family: 'Poppins', sans-serif, Arial, sans-serif;
-  background-color: #000;
-  color: #FFEB3B;
+  background-color: var(--black);
+  color: var(--yellow);
+  font-family: var(--font-main);
+}
+
+/* -------------------------------------------------------
+   LANDING PAGE
+------------------------------------------------------- */
+body.landing-mode {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,146 +35,198 @@ body {
   text-align: center;
 }
 
-/* CONTAINER */
-.landing-container { width: 100%; max-width: 50rem; padding: 0 1.5rem 1.5rem; }
+.landing-container {
+  width: 100%;
+  max-width: 50rem;
+  padding: 0 1.5rem 1.5rem;
+}
 
-/* TITLE */
 h1.tagline {
-  font-family: 'Sora', sans-serif;
+  font-family: var(--font-head);
   font-size: 5.3rem;
   font-weight: 900;
-  color: #FFEB3B;
   text-transform: uppercase;
   letter-spacing: 0.5rem;
   margin-bottom: 3.2rem;
 }
 
-/* RESPONSIVE TITLE */
 @media (max-width: 37.5em) { h1.tagline { font-size: 2rem; } }
 @media (max-width: 25em) { h1.tagline { font-size: 1.8rem; } }
 
 /* FORM */
-.input-form { display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center; }
+.input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
 
-/* TEXT FIELD */
-.text-input { padding: 24px; width: 700px; max-width: 100%; font-size: 36px; border: 1px solid #ccc; border-radius: 8px; margin-bottom: 3.2rem; font-family: 'Space Mono', monospace; }
+.text-input {
+  width: 700px;
+  max-width: 100%;
+  padding: 24px;
+  font-size: 36px;
+  font-family: var(--font-mono);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 3.2rem;
+}
 
 /* BUTTONS */
 .btn-filled {
-  padding: 18px 32px; background-color: #FFEB3B; color: #333; border: none; border-radius: 8px;
-  font-size: 32px; font-weight: bold; cursor: pointer; font-family: 'Sora', sans-serif;
+  padding: 18px 32px;
+  background-color: var(--yellow);
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: var(--font-head);
+  transition: 0.2s;
 }
-.btn-filled:hover { background-color: #333; color: #fff; }
+
+.btn-filled:hover {
+  background-color: #333;
+  color: #fff;
+}
 
 .btn-outlined {
-  margin-top: 2rem; padding: 14px 26px; background-color: #000; color: #FFEB3B;
-  font-size: 1.2rem; font-weight: 600; border: 2px solid #FFEB3B; border-radius: 8px; cursor: pointer; transition: 0.2s ease;
+  margin-top: 2rem;
+  padding: 14px 26px;
+  background-color: var(--black);
+  color: var(--yellow);
+  border: 2px solid var(--yellow);
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
 }
-.btn-outlined:hover { background-color: #FFEB3B; color: #000; }
 
-/* LOADER */
+.btn-outlined:hover {
+  background-color: var(--yellow);
+  color: var(--black);
+}
+
+/* -------------------------------------------------------
+   LOADING ELEMENTS
+------------------------------------------------------- */
 .loader {
   display: none;
   width: 100%;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
-#cursor { display: inline-block; width: 1ch; color: #FFEB3B; animation: blink 1s infinite; }
-@keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+#cursor {
+  display: inline-block;
+  width: 1ch;
+  animation: blink 1s infinite;
+}
 
-/* Spinner */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* SPINNER */
 .spinner {
   display: none;
   margin-top: 2rem;
   width: 50px;
   height: 50px;
-  border: 5px solid #FFEB3B;
-  border-top: 5px solid #000;
+  border: 5px solid var(--yellow);
+  border-top: 5px solid var(--black);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
+  0% { transform: rotate(0); }
   100% { transform: rotate(360deg); }
 }
 
-/* RESULTS PAGE */
-.results-container { width: 100%; max-width: 80rem; margin: 0 auto; }
+/* -------------------------------------------------------
+   RESULTS PAGE
+------------------------------------------------------- */
+.results-container {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
 .results-number {
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 4rem;
   font-weight: 700;
   text-align: center;
   margin-bottom: 3rem;
 }
-.results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
 
-/* LEFT COLUMN: INFO */
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+/* LEFT */
 .results-info {
-  display: flex; flex-direction: column; gap: 1rem; text-align: left;
-  border-right: 2px solid #FFEB3B; padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+  border-right: 2px solid var(--yellow);
+  padding-right: 2rem;
 }
-.info-row { display: flex; gap: 0.5rem; }
-.label { font-weight: 600; color: #FFEB3B; min-width: 175px; font-size: 24px; }
-.value { font-weight: 400; color: #FFEB3B; font-size: 24px; }
 
-/* RIGHT COLUMN: MAP */
+.info-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.label {
+  font-weight: 600;
+  color: var(--yellow);
+  min-width: 175px;
+  font-size: 24px;
+}
+
+.value {
+  font-size: 24px;
+}
+
+/* RIGHT MAP */
 .results-map {
-  background-color: #111; border-radius: 8px; min-height: 400px; overflow: hidden;
-  display: flex; justify-content: center; align-items: center;
+  background-color: #111;
+  border-radius: 8px;
+  min-height: 400px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.results-map img { width: 100%; height: 100%; object-fit: cover; }
 
-/* MOBILE */
+.results-map img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 @media (max-width: 50rem) {
   .results-grid { grid-template-columns: 1fr; }
   .results-map { min-height: 300px; margin-top: 2rem; }
 }
 
-/* Fullscreen page with centered camera image */
-.camera-wrapper {
-  background-color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* The “monitor screen” frame */
-.camera-frame {
-  width: 90vw;       /* margin on sides */
-  height: 90vh;      /* margin top/bottom */
-  background-color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  border: 4px solid #000; /* thicker frame look */
-}
-
-/* The static camera image */
-.camera-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* keeps aspect ratio and adds black bars */
-  background-color: #000;
-}
-
-
-/* ------------------------------- */
-/* HACKING VIDEO SCREEN */
-/* ------------------------------- */
-
+/* -------------------------------------------------------
+   HACKING VIDEO SCREEN
+------------------------------------------------------- */
 body.hacking-mode {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: #000;
+  background: var(--black);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,28 +242,26 @@ body.hacking-mode {
   object-fit: cover;
 }
 
-/* Continue button */
 .continue-btn {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 1.2rem 2.5rem;
-  background-color: #FFEB3B;
-  color: #000;
+  background-color: var(--yellow);
+  color: var(--black);
   border-radius: 8px;
   font-size: 1.6rem;
   font-weight: 700;
-  font-family: 'Sora', sans-serif;
+  font-family: var(--font-head);
   cursor: pointer;
   opacity: 0;
   transition: opacity 1s ease;
 }
 
-/* Hidden vs revealed state */
 .continue-btn.hidden {
-  pointer-events: none;
   opacity: 0;
+  pointer-events: none;
 }
 
 .continue-btn.visible {
@@ -197,9 +269,103 @@ body.hacking-mode {
   pointer-events: auto;
 }
 
-/* Hover effect */
 .continue-btn:hover {
-  background-color: #000;
-  color: #FFEB3B;
-  border: 2px solid #FFEB3B;
+  background-color: var(--black);
+  color: var(--yellow);
+  border: 2px solid var(--yellow);
+}
+
+/* -------------------------------------------------------
+   CAM PAGE (Static Image w/ Effects)
+------------------------------------------------------- */
+.cam-image-wrapper {
+  width: 100vw;
+  height: 100vh;
+  padding: 2rem;
+  background-color: var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cam-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1600px;
+  max-height: 900px;
+  overflow: hidden;
+  border: 2px solid var(--yellow);
+  border-radius: 8px;
+  animation: camFlicker 1.8s infinite;
+}
+
+.cam-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* SCANLINES */
+.cam-image-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255,255,255,0.03) 0px,
+    rgba(255,255,255,0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: 3;
+}
+
+/* STATIC NOISE */
+.cam-image-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60">\
+<rect width="60" height="60" fill="white" fill-opacity="0.015"/>\
+</svg>');
+  background-size: cover;
+  mix-blend-mode: overlay;
+  animation: noisePulse 0.12s steps(2) infinite;
+  z-index: 4;
+}
+
+/* VHS SWEEP */
+.vhs-sweep {
+  position: absolute;
+  top: -200%;
+  left: 0;
+  width: 100%;
+  height: 300%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.07) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  animation: sweepRoll 6s linear infinite;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Animations */
+@keyframes camFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { filter: brightness(1); }
+  20%, 22%, 24%, 55% { filter: brightness(1.3); }
+}
+
+@keyframes noisePulse {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(2px, 0); }
+}
+
+@keyframes sweepRoll {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
 }
