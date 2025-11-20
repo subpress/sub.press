@@ -3,25 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/tarnyx/tar-styles.css">
   <title>TARNYX – Accessing Feed...</title>
+
+  <style>
+    /* Fullscreen body wrapper */
+    body.hacking-mode {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000; /* black margin */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Video styling */
+    .fullscreen-video {
+      max-width: 90vw;  /* leave black margins left/right */
+      max-height: 90vh; /* leave black margins top/bottom */
+      object-fit: contain; /* maintain aspect ratio with black bars */
+      display: block;
+    }
+
+    /* Continue button */
+    .continue-btn {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 1.2rem 2.5rem;
+      background-color: #FFEB3B;
+      color: #000;
+      border-radius: 8px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      font-family: 'Sora', sans-serif;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 10; /* appear on top of video */
+    }
+
+    .continue-btn.hidden {
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .continue-btn.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .continue-btn:hover {
+      background-color: #000;
+      color: #FFEB3B;
+      border: 2px solid #FFEB3B;
+    }
+  </style>
 </head>
 
 <body class="hacking-mode">
 
-  <!-- Fullscreen hacking video -->
+  <!-- Compressed hacking video -->
   <video id="hackingVideo" class="fullscreen-video" autoplay muted playsinline>
-    <source src="/tarnyx/img/hack.mp4" type="video/mp4">
+    <source src="/tarnyx/img/hack2.mp4" type="video/mp4">
   </video>
 
-  <!-- Timed reveal button -->
+  <!-- Continue button (appears after delay) -->
   <div id="continueButton" class="continue-btn hidden">
     ACCESS GRANTED
   </div>
 
   <script>
-    const revealDelay = 10000; // 10 seconds
-    const button = document.getElementById("continueButton");
+    const revealDelay = 10000; // 10 seconds delay
+    const button = document.getElementById('continueButton');
 
     setTimeout(() => {
       button.classList.remove("hidden");
@@ -29,7 +91,7 @@
     }, revealDelay);
 
     button.addEventListener("click", () => {
-      window.location.href = "/tarnyx/feed.html";
+      window.location.href = "/tarnyx/monitor.html"; // go to static cam feed
     });
   </script>
 
