@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "Cascadia Code";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/cascadiacode/v5/qWc_B6-zq5zxD57cT5s916v3QjfzRuG9AIUcXuU-OaDKb9pHaHCA.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Cascadia Code";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/cascadiacode/v5/qWc9B6-zq5zxD57cT5s916v3aD7BuTnUax-yWfDEekiMVdlvbA.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Cascadia Code";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/cascadiacode/v5/qWc_B6-zq5zxD57cT5s916v3QjfzRuG9AIUcXuXrPqDKb9pHaHCA.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Sora";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/sora/v17/xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwV6-x.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Sora";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/sora/v17/xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwWa-xsaQ.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Sora";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/sora/v17/xMQ9uFFYT72X5wkB_18qmnndmSdSnh2BAfO5mnuyOo1lfiQwPWVVF4DQKI6RDWWIV2CZRSEEK2QLO253.woff2") format("woff2");
+}
+
+body {
+  font-family: "Sora", "Cascadia Code", system-ui, sans-serif;
+}
