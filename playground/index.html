@@ -8,6 +8,10 @@
   <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!--
+    Barlow Condensed Black — wall-painted, wide, heavy block caps
+    Space Mono           — typewriter / stencil mono for metadata
+  -->
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
 
@@ -57,7 +61,7 @@ body{
 #cur.big{width:48px;height:48px;background:rgba(255,235,59,.08)}
 #cur.fill{background:var(--y);border-color:var(--y)}
 
-/* ── HEAVY GRAIN ── */
+/* ── HEAVY GRAIN — pushed way up ── */
 body::before{
   content:'';position:fixed;inset:0;z-index:9990;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -66,13 +70,12 @@ body::before{
 }
 
 /* ═══════════════════════════════
-   NAV — 5 column: 2 links | gap | LOGO | gap | 2 links
+   NAV
 ═══════════════════════════════ */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:1000;
-  height:56px;
-  display:grid;
-  grid-template-columns:1fr 1fr auto 1fr 1fr;
+  height:56px;display:grid;
+  grid-template-columns:1fr auto 1fr;
   align-items:center;
   padding:0 32px;
   border-bottom:1px solid rgba(255,255,255,.07);
@@ -82,32 +85,28 @@ nav::before{
   background:var(--ink);opacity:.95;
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
 }
-
+/* Left group */
+.nav-left{display:flex;align-items:center;justify-content:flex-start}
+/* Centre logo */
 .nav-logo{
   display:flex;align-items:center;justify-content:center;
-  text-decoration:none;padding:0 24px;
-  grid-column:3;
+  text-decoration:none;padding:0 16px;
 }
 .nav-logo svg{width:28px;height:auto;opacity:.9}
 .nav-logo svg path{fill:#e8e4dc}
-
-.nav-link{
+/* Right group */
+.nav-right{display:flex;align-items:center;justify-content:flex-end}
+/* Shared link styles */
+.nav-left a,.nav-right a{
   font-family:var(--mono);font-size:9px;font-weight:700;
   text-transform:uppercase;letter-spacing:.14em;color:rgba(232,228,220,.45);
   text-decoration:none;padding:6px 14px;transition:color .15s;white-space:nowrap;
 }
-.nav-link:hover{color:var(--y)}
-
-/* Position the four links symmetrically around the logo */
-.nav-link-1{ grid-column:1; text-align:left; }
-.nav-link-2{ grid-column:2; text-align:right; }
-.nav-link-3{ grid-column:4; text-align:left; }
-.nav-link-4{ grid-column:5; text-align:right; }
-
+.nav-left a:hover,.nav-right a:hover{color:var(--y)}
 .nav-burger{
   display:none;background:none;border:1px solid rgba(255,255,255,.12);
   width:40px;height:40px;align-items:center;justify-content:center;
-  transition:border-color .15s;grid-column:5;justify-self:end;
+  transition:border-color .15s;
 }
 .nav-burger:hover{border-color:var(--y)}
 .nav-burger svg path{fill:#e8e4dc}
@@ -143,13 +142,16 @@ nav::before{
 }
 
 /* ═══════════════════════════════
-   HERO
+   HERO — full-bleed image
+   Yellow caution tape stripe cuts
+   across the bottom third.
 ═══════════════════════════════ */
 #hero{
   position:relative;height:100svh;min-height:580px;
   overflow:hidden;display:flex;flex-direction:column;
   padding-top:56px;
 }
+
 .hero-img{position:absolute;inset:0;z-index:0}
 .hero-img img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -158,6 +160,8 @@ nav::before{
   transition:transform 10s ease-out;
 }
 .hero-img img.loaded{transform:scale(1)}
+
+/* Diagonal caution-tape stripe — yellow hazard band */
 .hero-tape{
   position:absolute;bottom:0;left:0;right:0;z-index:1;
   height:44%;
@@ -170,12 +174,14 @@ nav::before{
   clip-path:polygon(0 38%, 100% 0, 100% 100%, 0 100%);
   opacity:.9;
 }
+/* Black overlay over the tape so type is legible */
 .hero-tape-overlay{
   position:absolute;bottom:0;left:0;right:0;z-index:2;
   height:44%;
   background:linear-gradient(to top, rgba(10,10,10,.88) 0%, rgba(10,10,10,.3) 60%, transparent 100%);
   clip-path:polygon(0 38%, 100% 0, 100% 100%, 0 100%);
 }
+
 .hero-content{
   position:relative;z-index:3;
   flex:1;display:flex;flex-direction:column;justify-content:flex-end;
@@ -193,7 +199,12 @@ nav::before{
   color:#e8e4dc;
   text-transform:uppercase;
 }
-.hero-name .accent{color:var(--y);}
+.hero-name .accent{
+  color:var(--y);
+  /* Paint drip / spray feel via text-stroke */
+  -webkit-text-stroke:0px;
+}
+
 .hero-foot{
   position:relative;z-index:3;
   display:flex;align-items:center;justify-content:space-between;
@@ -218,24 +229,33 @@ nav::before{
 .hero-scroll:hover{gap:18px}
 
 /* ═══════════════════════════════
-   MANIFESTO
+   MANIFESTO — full-bleed black,
+   like a wall you're not supposed
+   to be reading.
 ═══════════════════════════════ */
 #manifesto{
   background:var(--k);
-  padding:0;overflow:hidden;position:relative;
+  padding:0;
+  overflow:hidden;
+  position:relative;
 }
+/* Spray-paint circle behind text — decorative */
 .manifesto-circle{
   position:absolute;top:-120px;right:-80px;
   width:600px;height:600px;border-radius:50%;
-  background:var(--y);opacity:.04;pointer-events:none;
+  background:var(--y);opacity:.04;
+  pointer-events:none;
 }
 .manifesto-inner{
-  padding:100px 32px 100px;max-width:1400px;margin:0 auto;
+  padding:100px 32px 100px;
+  max-width:1400px;margin:0 auto;
   display:grid;grid-template-columns:160px 1fr;
-  gap:0 80px;align-items:start;position:relative;z-index:1;
+  gap:0 80px;align-items:start;
+  position:relative;z-index:1;
 }
 .manifesto-sidebar{
-  padding-top:16px;display:flex;flex-direction:column;gap:24px;
+  padding-top:16px;
+  display:flex;flex-direction:column;gap:24px;
 }
 .manifesto-label{
   font-family:var(--mono);font-size:9px;font-weight:700;
@@ -243,8 +263,10 @@ nav::before{
   line-height:2;
 }
 .manifesto-label span{display:block}
+/* Stencil-style thin rule */
 .manifesto-rule{
-  width:1px;height:80px;background:rgba(255,235,59,.2);margin-left:2px;
+  width:1px;height:80px;background:rgba(255,235,59,.2);
+  margin-left:2px;
 }
 .manifesto-body{
   font-family:var(--blk);font-weight:900;
@@ -254,6 +276,7 @@ nav::before{
 }
 .manifesto-body em{
   font-style:normal;color:var(--y);
+  /* slight skew — spray on a curved surface */
   display:inline-block;transform:skewX(-2deg);
 }
 .manifesto-sub{
@@ -266,298 +289,105 @@ nav::before{
 }
 
 /* ═══════════════════════════════
-   IN PRINT — EDITORIAL REDESIGN
-   Avant-garde magazine layout.
-   Full bleed, typographic drama,
-   asymmetric compositions, 
-   cinematic sequences.
+   IN PRINT
+   Full-width image rows with
+   high-contrast photo treatment.
+   Title overlays the image.
 ═══════════════════════════════ */
-#inprint{
-  background:var(--k);
-  overflow:hidden;
-}
+#inprint{background:var(--ink)}
 
-/* Section masthead — newspaper-style */
-.inprint-masthead{
-  padding:56px 48px 0;
-  display:grid;
-  grid-template-columns:1fr auto;
-  align-items:end;
-  gap:32px;
-  position:relative;
-}
-.inprint-masthead::after{
-  content:'';display:block;position:absolute;
-  bottom:0;left:48px;right:48px;
-  height:3px;
-  background:repeating-linear-gradient(90deg, var(--y) 0px, var(--y) 24px, transparent 24px, transparent 32px);
-}
-.inprint-section-label{
-  font-family:var(--mono);font-size:8px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.3em;color:var(--y);opacity:.4;
-  margin-bottom:12px;
+.inprint-head{
+  padding:72px 32px 40px;
+  display:flex;align-items:baseline;justify-content:space-between;
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 .inprint-heading{
   font-family:var(--blk);font-weight:900;
-  font-size:clamp(80px,13vw,200px);
-  line-height:.82;letter-spacing:-.03em;
+  font-size:clamp(52px,8vw,120px);
+  line-height:.9;letter-spacing:-.01em;
   text-transform:uppercase;color:#e8e4dc;
-  /* Slight halftone feel via text shadow */
-  text-shadow: 2px 2px 0 rgba(255,235,59,.06);
 }
-.inprint-masthead-right{
-  text-align:right;padding-bottom:16px;
-}
-.inprint-issue-count{
-  font-family:var(--blk);font-weight:900;
-  font-size:clamp(100px,16vw,240px);
-  line-height:1;letter-spacing:-.04em;
-  color:transparent;
-  -webkit-text-stroke:1px rgba(255,255,255,.06);
-  user-select:none;
-}
-.inprint-meta-row{
-  font-family:var(--mono);font-size:8px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.18em;
-  color:rgba(232,228,220,.2);margin-top:8px;
+.inprint-meta{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.14em;
+  color:rgba(232,228,220,.25);
 }
 
-/* ── PUBLICATION LIST ── */
-.inprint-list{list-style:none;padding:48px 0 0;}
+.inprint-list{list-style:none}
 
-/* Every item is a different editorial layout */
-/* ITEM BASE */
+/* Each work: near-full-viewport image
+   with title stamped over it */
 .inprint-item{
-  position:relative;overflow:hidden;
-  border-top:1px solid rgba(255,255,255,.05);
-  cursor:pointer;
+  position:relative;
+  height:75vh;min-height:440px;
+  overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.inprint-item-img{
+  position:absolute;inset:0;
 }
 .inprint-item-img img{
   width:100%;height:100%;object-fit:cover;display:block;
-  filter:grayscale(100%) contrast(1.35) brightness(.4);
-  transition:filter 1.2s cubic-bezier(.16,1,.3,1), transform 1.4s cubic-bezier(.16,1,.3,1);
+  filter:grayscale(100%) contrast(1.3) brightness(.45);
+  transform:scale(1.04);
+  transition:transform 1s cubic-bezier(.16,1,.3,1),filter 1s;
 }
 .inprint-item:hover .inprint-item-img img{
-  filter:grayscale(40%) contrast(1.15) brightness(.6);
-  transform:scale(1.03);
+  transform:scale(1);
+  filter:grayscale(60%) contrast(1.2) brightness(.55);
 }
 
-/* ── ITEM 001: FULL BLEED HERO — title stencilled large ── */
-.inprint-item--hero{
-  height:90vh;min-height:520px;
-}
-.inprint-item--hero .inprint-item-img{
-  position:absolute;inset:0;
-}
-/* Hard horizontal rule — like a typeface baseline */
-.inprint-item--hero::before{
-  content:'';position:absolute;top:50%;left:0;right:0;z-index:2;
-  height:1px;background:rgba(255,235,59,.12);
-}
-/* Dark gradient from bottom */
-.inprint-item--hero::after{
+/* Vignette from bottom */
+.inprint-item::after{
   content:'';position:absolute;inset:0;z-index:1;
-  background:
-    linear-gradient(to top, rgba(10,10,10,.98) 0%, rgba(10,10,10,.5) 40%, rgba(10,10,10,.1) 70%, transparent 100%),
-    linear-gradient(to right, rgba(10,10,10,.5) 0%, transparent 50%);
+  background:linear-gradient(to top,
+    rgba(10,10,10,.95) 0%,
+    rgba(10,10,10,.4) 45%,
+    transparent 75%);
 }
-.inprint-item--hero .inprint-item-body{
-  position:absolute;inset:0;z-index:3;
-  display:grid;
-  grid-template-rows:1fr auto;
-  padding:48px;
-}
-.inprint-item--hero .item-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-}
-.inprint-item--hero .item-index{
-  font-family:var(--mono);font-size:8px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.3em;
-  color:var(--y);opacity:.5;
-  writing-mode:vertical-lr;transform:rotate(180deg);
-  align-self:flex-start;
-}
-.inprint-item--hero .item-type-stamp{
-  font-family:var(--mono);font-size:8px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.22em;
-  color:rgba(232,228,220,.25);
-  border:1px solid rgba(255,255,255,.1);
-  padding:6px 14px;
-}
-.inprint-item--hero .item-bottom{
-  display:flex;align-items:flex-end;justify-content:space-between;gap:40px;
-}
-.inprint-item--hero .item-title{
-  font-family:var(--blk);font-weight:900;
-  font-size:clamp(72px,12vw,180px);
-  line-height:.84;letter-spacing:-.02em;
-  text-transform:uppercase;color:#e8e4dc;
-  transition:color .4s;
-}
-.inprint-item--hero:hover .item-title{color:var(--y)}
-/* The "pull quote" column beside the title */
-.inprint-item--hero .item-aside{
-  max-width:220px;text-align:right;
-  padding-bottom:8px;flex-shrink:0;
-}
-.inprint-item--hero .item-desc{
-  font-family:var(--mono);font-size:10px;font-weight:400;
-  line-height:1.7;color:rgba(232,228,220,.3);
-  margin-bottom:16px;
-}
-.inprint-item--hero .item-year{
-  font-family:var(--blk);font-size:80px;font-weight:900;
-  line-height:1;color:rgba(255,235,59,.07);
-  letter-spacing:-.03em;
-  transition:color .5s;
-}
-.inprint-item--hero:hover .item-year{color:rgba(255,235,59,.15)}
 
-/* ── ITEM 002 & 003: SPLIT — image left, massive text right ── */
-.inprint-item--split{
-  display:grid;
-  grid-template-columns:55% 45%;
-  min-height:70vh;
+.inprint-item-body{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:40px 32px;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:24px;
 }
-.inprint-item--split .inprint-item-img{
-  position:relative;overflow:hidden;
+.inprint-item-info{display:flex;flex-direction:column;gap:12px}
+.inprint-item-num{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.2em;color:var(--y);opacity:.6;
 }
-/* Thick yellow border accent on the split */
-.inprint-item--split::after{
-  content:'';position:absolute;left:55%;top:0;bottom:0;width:3px;z-index:2;
-  background:var(--y);opacity:.15;pointer-events:none;
-}
-.inprint-item--split .inprint-item-body{
-  display:flex;flex-direction:column;justify-content:space-between;
-  padding:56px 48px;
-  background:var(--k);
-  position:relative;
-}
-/* Rotated issue number watermark */
-.inprint-item--split .inprint-item-body::before{
-  content:attr(data-num);
-  position:absolute;bottom:-20px;right:-10px;
-  font-family:var(--blk);font-size:220px;font-weight:900;
-  line-height:1;letter-spacing:-.05em;
-  color:rgba(255,255,255,.025);
-  pointer-events:none;user-select:none;
-}
-.inprint-item--split .item-top-row{
-  display:flex;align-items:center;justify-content:space-between;
-}
-.inprint-item--split .item-num{
-  font-family:var(--mono);font-size:8px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.28em;color:var(--y);opacity:.4;
-}
-.inprint-item--split .item-tag{
-  font-family:var(--mono);font-size:8px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.18em;
-  color:rgba(232,228,220,.18);
-}
-.inprint-item--split .item-title{
+.inprint-item-title{
   font-family:var(--blk);font-weight:900;
-  font-size:clamp(52px,7vw,110px);
-  line-height:.88;letter-spacing:-.02em;
+  font-size:clamp(44px,6vw,100px);
+  line-height:.9;letter-spacing:-.01em;
   text-transform:uppercase;color:#e8e4dc;
   transition:color .3s;
 }
-.inprint-item--split:hover .item-title{color:var(--y)}
-.inprint-item--split .item-sub{
-  font-family:var(--blk);font-size:clamp(18px,2vw,28px);font-weight:700;
-  text-transform:uppercase;letter-spacing:.06em;
-  color:rgba(232,228,220,.15);margin-top:16px;
+.inprint-item:hover .inprint-item-title{color:var(--y)}
+.inprint-item-type{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.16em;
+  color:rgba(232,228,220,.35);
 }
-.inprint-item--split .item-foot{
-  display:flex;align-items:flex-end;justify-content:space-between;
-  border-top:1px solid rgba(255,255,255,.06);
-  padding-top:24px;
-}
-.inprint-item--split .item-foot-label{
-  font-family:var(--mono);font-size:8px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.16em;color:rgba(232,228,220,.25);
-}
-.inprint-item--split .item-arrow{
-  font-family:var(--blk);font-size:36px;font-weight:900;
-  color:rgba(255,235,59,.12);
-  transition:color .3s,transform .4s cubic-bezier(.16,1,.3,1);
-}
-.inprint-item--split:hover .item-arrow{
-  color:rgba(255,235,59,.5);transform:translateX(8px);
-}
-
-/* Reverse the split for alternating feel */
-.inprint-item--split-rev{
-  grid-template-columns:45% 55%;
-}
-.inprint-item--split-rev .inprint-item-img{ order:2 }
-.inprint-item--split-rev .inprint-item-body{ order:1 }
-.inprint-item--split-rev::after{left:45%}
-
-/* ── ITEM 004: WIDE CINEMATIC — full width, title as oversized slug ── */
-.inprint-item--wide{
-  height:60vh;min-height:400px;
-  display:flex;align-items:stretch;
-}
-.inprint-item--wide .inprint-item-img{
-  position:absolute;inset:0;
-}
-.inprint-item--wide::after{
-  content:'';position:absolute;inset:0;z-index:1;
-  background:
-    linear-gradient(to right, rgba(10,10,10,.96) 0%, rgba(10,10,10,.6) 40%, transparent 75%);
-}
-.inprint-item--wide .inprint-item-body{
-  position:relative;z-index:2;
-  display:flex;flex-direction:column;justify-content:space-between;
-  padding:56px 64px;
-  width:65%;
-}
-.inprint-item--wide .item-eyebrow{
-  display:flex;align-items:center;gap:16px;
-}
-.inprint-item--wide .item-num{
-  font-family:var(--mono);font-size:8px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.3em;color:var(--y);opacity:.45;
-}
-.inprint-item--wide .item-rule{
-  flex:1;height:1px;background:rgba(255,235,59,.1);max-width:120px;
-}
-.inprint-item--wide .item-title-group .item-issue{
-  font-family:var(--mono);font-size:8px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.22em;
-  color:rgba(232,228,220,.25);
-  display:block;margin-bottom:8px;
-}
-.inprint-item--wide .item-title{
-  font-family:var(--blk);font-weight:900;
-  font-size:clamp(60px,10vw,150px);
-  line-height:.84;letter-spacing:-.02em;
-  text-transform:uppercase;color:#e8e4dc;
+/* Year tag — top right corner, like a sticker */
+.inprint-item-year{
+  font-family:var(--blk);font-size:clamp(80px,10vw,140px);font-weight:900;
+  color:rgba(255,235,59,.06);letter-spacing:-.02em;
+  line-height:1;align-self:flex-end;
+  text-transform:uppercase;user-select:none;
   transition:color .4s;
 }
-.inprint-item--wide:hover .item-title{color:var(--y)}
-.inprint-item--wide .item-foot{
-  display:flex;align-items:center;gap:40px;
-}
-.inprint-item--wide .item-type{
-  font-family:var(--mono);font-size:9px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.18em;color:rgba(232,228,220,.3);
-}
-.inprint-item--wide .item-cta{
-  font-family:var(--mono);font-size:8px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.2em;
-  color:var(--y);opacity:.5;
-  display:flex;align-items:center;gap:8px;
-  transition:opacity .2s,gap .2s;
-}
-.inprint-item--wide:hover .item-cta{opacity:1;gap:14px}
+.inprint-item:hover .inprint-item-year{color:rgba(255,235,59,.12)}
 
 /* ═══════════════════════════════
-   SERVICES
+   SERVICES — yellow caution zone
+   Feels like a warning notice on
+   a construction hoarding.
 ═══════════════════════════════ */
 #services{background:var(--y);color:var(--k)}
+
+/* Caution tape top border */
 .services-tape-top{
   height:14px;width:100%;
   background:repeating-linear-gradient(
@@ -566,7 +396,9 @@ nav::before{
     var(--y) 14px,var(--y) 28px
   );
 }
+
 .services-inner{padding:72px 32px 80px}
+
 .services-head{
   display:flex;align-items:baseline;gap:32px;
   border-bottom:3px solid var(--k);padding-bottom:24px;margin-bottom:0;
@@ -581,6 +413,7 @@ nav::before{
   text-transform:uppercase;letter-spacing:.16em;color:rgba(0,0,0,.4);
   padding-bottom:6px;
 }
+
 .services-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
   border-bottom:3px solid var(--k);
@@ -602,6 +435,7 @@ nav::before{
   line-height:.95;letter-spacing:-.01em;text-transform:uppercase;color:var(--k);
   margin-bottom:20px;
 }
+/* Black underline bar — like a warning stripe */
 .service-col-title::after{
   content:'';display:block;width:100%;height:3px;background:var(--k);margin-top:14px;
 }
@@ -616,6 +450,8 @@ nav::before{
   text-transform:uppercase;letter-spacing:.14em;
   background:var(--k);color:var(--y);padding:5px 12px;
 }
+
+/* Caution tape bottom border */
 .services-tape-bot{
   height:14px;width:100%;
   background:repeating-linear-gradient(
@@ -626,10 +462,11 @@ nav::before{
 }
 
 /* ═══════════════════════════════
-   CONTACT
+   CONTACT — black, confrontational
 ═══════════════════════════════ */
 #contact{
-  background:var(--k);min-height:100svh;
+  background:var(--k);
+  min-height:100svh;
   display:flex;flex-direction:column;
 }
 .contact-body{
@@ -648,6 +485,7 @@ nav::before{
   text-transform:uppercase;color:#e8e4dc;
 }
 .contact-question .y{color:var(--y)}
+
 .contact-action{
   margin-top:80px;
   display:flex;align-items:center;gap:32px;flex-wrap:wrap;
@@ -667,6 +505,7 @@ nav::before{
   transition:color .3s,transform .4s cubic-bezier(.16,1,.3,1);
 }
 .contact-action:hover .contact-arr{color:rgba(255,255,255,.4);transform:translateX(14px)}
+
 .contact-foot{
   padding:28px 32px;
   border-top:1px solid rgba(255,255,255,.06);
@@ -705,13 +544,11 @@ nav::before{
    RESPONSIVE
 ═══════════════════════════════ */
 @media(max-width:960px){
-  nav{
-    padding:0 20px;
-    grid-template-columns:auto 1fr auto;
-  }
-  .nav-link-1,.nav-link-2,.nav-link-3,.nav-link-4{display:none}
-  .nav-logo{grid-column:2;justify-self:center}
-  .nav-burger{display:flex;grid-column:3}
+  nav{padding:0 20px;grid-template-columns:auto 1fr auto}
+  .nav-left{display:none}
+  .nav-right{display:none}
+  .nav-burger{display:flex}
+  .nav-logo{padding:0}
 
   .hero-content{padding:0 20px 0}
   .hero-foot{padding:16px 20px 24px}
@@ -723,42 +560,10 @@ nav::before{
   .manifesto-rule{width:40px;height:1px;margin-left:0}
   .manifesto-sub{grid-column:1}
 
-  .inprint-masthead{padding:40px 24px 0}
-  .inprint-masthead::after{left:24px;right:24px}
-  .inprint-issue-count{font-size:clamp(60px,16vw,120px)}
-
-  .inprint-item--hero .inprint-item-body{padding:28px}
-  .inprint-item--hero .item-bottom{flex-direction:column;align-items:flex-start;gap:16px}
-  .inprint-item--hero .item-aside{text-align:left;max-width:100%}
-  .inprint-item--hero .item-year{font-size:48px}
-
-  .inprint-item--split,
-  .inprint-item--split-rev{
-    grid-template-columns:1fr;
-  }
-  .inprint-item--split .inprint-item-img,
-  .inprint-item--split-rev .inprint-item-img{
-    order:0;height:50vw;min-height:260px;
-  }
-  .inprint-item--split .inprint-item-body,
-  .inprint-item--split-rev .inprint-item-body{
-    order:1;padding:36px 24px;
-  }
-  .inprint-item--split::after,
-  .inprint-item--split-rev::after{display:none}
-  .inprint-item--split .inprint-item-body::before,
-  .inprint-item--split-rev .inprint-item-body::before{display:none}
-
-  .inprint-item--wide{height:auto;min-height:0}
-  .inprint-item--wide .inprint-item-img{height:56vw;min-height:300px;position:relative}
-  .inprint-item--wide{flex-direction:column}
-  .inprint-item--wide::after{
-    background:linear-gradient(to top, rgba(10,10,10,.96) 0%, rgba(10,10,10,.5) 50%, transparent 100%);
-  }
-  .inprint-item--wide .inprint-item-body{
-    position:absolute;bottom:0;left:0;right:0;
-    width:100%;padding:28px 24px;
-  }
+  .inprint-head{padding:56px 20px 32px}
+  .inprint-item{height:60vw;min-height:320px}
+  .inprint-item-body{padding:28px 20px}
+  .inprint-item-year{font-size:clamp(60px,8vw,100px)}
 
   .services-inner{padding:56px 20px 64px}
   .services-grid{grid-template-columns:1fr}
@@ -776,9 +581,10 @@ nav::before{
 @media(max-width:600px){
   .hero-name{font-size:clamp(60px,16vw,120px)}
   .manifesto-body{font-size:clamp(36px,9vw,72px)}
-  .inprint-heading{font-size:clamp(56px,15vw,120px)}
+  .inprint-heading{font-size:clamp(44px,11vw,80px)}
   .contact-question{font-size:clamp(52px,13vw,100px)}
   .services-heading{font-size:clamp(48px,13vw,100px)}
+  .inprint-item-title{font-size:clamp(36px,8vw,72px)}
   .hero-tape{clip-path:polygon(0 55%,100% 0,100% 100%,0 100%)}
   .hero-tape-overlay{clip-path:polygon(0 55%,100% 0,100% 100%,0 100%)}
 }
@@ -789,11 +595,15 @@ nav::before{
 <a class="skip-link" href="#main">Skip to content</a>
 <div id="cur" aria-hidden="true"></div>
 
-<!-- NAV — logo centred, 2 links each side -->
+<!-- NAV -->
 <nav aria-label="Main navigation">
-  <a class="nav-link nav-link-1" href="#manifesto">About</a>
-  <a class="nav-link nav-link-2" href="#inprint">In Print</a>
+  <!-- Left: two links -->
+  <div class="nav-left">
+    <a href="#manifesto">About</a>
+    <a href="#inprint">In Print</a>
+  </div>
 
+  <!-- Centre: logo only -->
   <a class="nav-logo" href="#hero" aria-label="Subliminal Press — home">
     <svg viewBox="0 0 38 31.683" overflow="visible" aria-hidden="true" focusable="false">
       <path d="M 37.995 26.487 C 38.015 27.112 37.975 27.991 37.896 28.644 C 37.818 29.255 37.683 29.84 37.312 30.331 C 36.235 31.635 34.324 31.578 32.752 31.604 C 29.564 31.649 26.322 31.674 23.193 31.683 C 22.379 31.677 22.353 31.598 23.265 31.246 C 24.089 30.923 25.235 30.473 26.158 30.112 C 28.991 29.002 31.727 27.929 34.547 26.824 C 35.45 26.49 36.638 25.958 37.396 25.745 C 37.828 25.647 37.967 25.895 37.993 26.464 Z M 18.821 0.325 C 18.912 0.004 19.231 -0.001 19.513 0 C 20.129 0 21.377 0.007 22.289 0.01 C 25.312 0.022 28.682 0.04 31.646 0.07 C 31.844 0.086 32.914 0.033 32.68 0.213 C 30.077 1.233 27.123 2.153 24.565 3.079 C 23.02 3.609 21.099 4.298 19.533 4.822 C 18.587 5.184 18.752 4.122 18.722 3.274 C 18.757 2.321 18.632 1.257 18.817 0.339 Z M 4.648 0.182 C 3.553 0.115 2.362 0.248 1.378 0.774 C -0.094 1.556 0.077 3.632 0.009 5.126 C -0.011 7.913 0.01 12.225 0.002 15.369 C -0.004 17.589 0.005 23.019 0.005 25.018 C 0.009 25.325 0.026 25.603 0.317 25.751 C 2.058 26.511 5.215 27.648 7.245 28.461 C 9.106 29.196 11.389 30.053 13.739 30.973 C 14.931 31.457 15.481 31.62 16.555 31.627 C 17.404 31.6 18.76 31.897 18.885 30.706 C 18.97 23.587 18.886 13.701 18.914 6.542 C 18.917 5.801 18.972 4.995 18.184 4.712 C 16.872 4.197 14.512 3.448 13.097 2.94 C 10.903 2.175 8.221 1.272 5.945 0.483 C 5.523 0.341 5.099 0.227 4.667 0.184 Z M 13.343 24.229 C 12.68 26.058 11.1 26.778 9.286 25.998 C 6.273 24.649 4.533 21.005 3.667 17.943 C 2.889 14.955 2.736 11.739 3.729 8.803 C 4.185 7.494 4.995 6.053 6.208 5.342 C 7.411 4.643 8.884 5.162 9.789 6.14 C 10.658 7.037 11.231 8.19 11.729 9.324 C 13.316 12.835 14.571 20.461 13.353 24.204 Z"/>
@@ -801,14 +611,16 @@ nav::before{
     </svg>
   </a>
 
-  <a class="nav-link nav-link-3" href="#services">Services</a>
-  <a class="nav-link nav-link-4" href="#contact">Contact</a>
-
-  <button class="nav-burger" id="navOpen" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
-    <svg width="20" height="12" viewBox="0 0 20 12" fill="none" aria-hidden="true">
-      <path d="M0 0h20M0 6h20M0 12h14" stroke="#e8e4dc" stroke-width="1.5"/>
-    </svg>
-  </button>
+  <!-- Right: two links + mobile burger -->
+  <div class="nav-right">
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+    <button class="nav-burger" id="navOpen" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+      <svg width="20" height="12" viewBox="0 0 20 12" fill="none" aria-hidden="true">
+        <path d="M0 0h20M0 6h20M0 12h14" stroke="#e8e4dc" stroke-width="1.5"/>
+      </svg>
+    </button>
+  </div>
 </nav>
 
 <!-- Mobile drawer -->
@@ -846,7 +658,9 @@ nav::before{
 
   <footer class="hero-foot reveal" style="transition-delay:.4s" aria-label="Quick contact">
     <span class="hero-foot-tag"><a href="mailto:hey@subliminal.press">hey@subliminal.press</a></span>
-    <a class="hero-scroll" href="#manifesto" aria-label="Continue reading">Continue ↓</a>
+    <a class="hero-scroll" href="#manifesto" aria-label="Continue reading">
+      Continue ↓
+    </a>
     <span class="hero-foot-tag">London, UK</span>
   </footer>
 </section>
@@ -878,106 +692,74 @@ nav::before{
   </div>
 </section>
 
-<!-- IN PRINT — editorial redesign -->
+<!-- IN PRINT -->
 <section id="inprint" aria-labelledby="inprint-h2">
-
-  <div class="inprint-masthead">
-    <div>
-      <p class="inprint-section-label reveal">The Catalogue</p>
-      <h2 class="inprint-heading reveal heavy" id="inprint-h2">In<br>Print</h2>
-    </div>
-    <div class="inprint-masthead-right">
-      <div class="inprint-issue-count reveal" aria-hidden="true">004</div>
-      <p class="inprint-meta-row reveal" style="transition-delay:.1s">Publications — 2024–2025</p>
-    </div>
+  <div class="inprint-head">
+    <h2 class="inprint-heading reveal" id="inprint-h2">In Print</h2>
+    <span class="inprint-meta reveal" style="transition-delay:.1s" aria-label="4 works published">
+      004 publications
+    </span>
   </div>
 
   <ul class="inprint-list">
 
-    <!-- 001: FULL BLEED HERO -->
-    <li class="inprint-item inprint-item--hero reveal">
+    <li class="inprint-item reveal">
       <div class="inprint-item-img">
         <img src="https://framerusercontent.com/images/uhv3cH6BzgrPm40HeHqAg6zjSDw.png"
              alt="Obituary — photography publication, 2024" loading="lazy">
       </div>
       <div class="inprint-item-body">
-        <div class="item-top">
-          <span class="item-index" aria-hidden="true">001</span>
-          <span class="item-type-stamp">Photography — 2024</span>
+        <div class="inprint-item-info">
+          <span class="inprint-item-num" aria-hidden="true">001</span>
+          <h3 class="inprint-item-title">Obituary</h3>
+          <p class="inprint-item-type">Photography — 2024</p>
         </div>
-        <div class="item-bottom">
-          <h3 class="item-title">Obituary</h3>
-          <div class="item-aside">
-            <p class="item-desc">A document of lives lived past the edges of the map. Photography of the overlooked and irretrievable.</p>
-            <div class="item-year" aria-hidden="true">2024</div>
-          </div>
-        </div>
+        <span class="inprint-item-year" aria-hidden="true">2024</span>
       </div>
     </li>
 
-    <!-- 002: SPLIT — image left -->
-    <li class="inprint-item inprint-item--split reveal" style="transition-delay:.06s">
+    <li class="inprint-item reveal" style="transition-delay:.06s">
       <div class="inprint-item-img">
         <img src="https://framerusercontent.com/images/dFjE9QNvqLjy4b695gv9gXMus0.png"
              alt="Fossil Fuel Issue 1 — zine, 2024" loading="lazy">
       </div>
-      <div class="inprint-item-body" data-num="1">
-        <div class="item-top-row">
-          <span class="item-num">002</span>
-          <span class="item-tag">Zine — 2024</span>
+      <div class="inprint-item-body">
+        <div class="inprint-item-info">
+          <span class="inprint-item-num" aria-hidden="true">002</span>
+          <h3 class="inprint-item-title">Fossil Fuel ISS. 1</h3>
+          <p class="inprint-item-type">Zine — 2024</p>
         </div>
-        <div>
-          <h3 class="item-title">Fossil<br>Fuel</h3>
-          <p class="item-sub">Issue One</p>
-        </div>
-        <div class="item-foot">
-          <span class="item-foot-label">First pressing</span>
-          <span class="item-arrow" aria-hidden="true">→</span>
-        </div>
+        <span class="inprint-item-year" aria-hidden="true">2024</span>
       </div>
     </li>
 
-    <!-- 003: SPLIT REVERSE — image right -->
-    <li class="inprint-item inprint-item--split inprint-item--split-rev reveal" style="transition-delay:.12s">
+    <li class="inprint-item reveal" style="transition-delay:.12s">
       <div class="inprint-item-img">
         <img src="https://framerusercontent.com/images/twyjL80Oabad1evo6yXFHfdyC8.png"
              alt="Fossil Fuel Issue 2 — zine, 2024" loading="lazy">
       </div>
-      <div class="inprint-item-body" data-num="2">
-        <div class="item-top-row">
-          <span class="item-num">003</span>
-          <span class="item-tag">Zine — 2024</span>
+      <div class="inprint-item-body">
+        <div class="inprint-item-info">
+          <span class="inprint-item-num" aria-hidden="true">003</span>
+          <h3 class="inprint-item-title">Fossil Fuel ISS. 2</h3>
+          <p class="inprint-item-type">Zine — 2024</p>
         </div>
-        <div>
-          <h3 class="item-title">Fossil<br>Fuel</h3>
-          <p class="item-sub">Issue Two</p>
-        </div>
-        <div class="item-foot">
-          <span class="item-foot-label">Second pressing</span>
-          <span class="item-arrow" aria-hidden="true">→</span>
-        </div>
+        <span class="inprint-item-year" aria-hidden="true">2024</span>
       </div>
     </li>
 
-    <!-- 004: WIDE CINEMATIC -->
-    <li class="inprint-item inprint-item--wide reveal" style="transition-delay:.18s">
+    <li class="inprint-item reveal" style="transition-delay:.18s">
       <div class="inprint-item-img">
         <img src="https://framerusercontent.com/images/23xnED9GSwRMiLuIW7rzMH8eU.png"
              alt="Fossil Fuel Issue 3 — zine, 2025" loading="lazy">
       </div>
       <div class="inprint-item-body">
-        <div class="item-eyebrow">
-          <span class="item-num">004</span>
-          <div class="item-rule" aria-hidden="true"></div>
+        <div class="inprint-item-info">
+          <span class="inprint-item-num" aria-hidden="true">004</span>
+          <h3 class="inprint-item-title">Fossil Fuel ISS. 3</h3>
+          <p class="inprint-item-type">Zine — 2025</p>
         </div>
-        <div class="item-title-group">
-          <span class="item-issue">Issue Three — 2025</span>
-          <h3 class="item-title">Fossil<br>Fuel</h3>
-        </div>
-        <div class="item-foot">
-          <span class="item-type">Zine</span>
-          <span class="item-cta">Latest issue ↓</span>
-        </div>
+        <span class="inprint-item-year" aria-hidden="true">2025</span>
       </div>
     </li>
 
@@ -993,6 +775,7 @@ nav::before{
       <p class="services-warning reveal" style="transition-delay:.08s">Whatever it takes.</p>
     </div>
     <div class="services-grid">
+
       <div class="service-col reveal" style="transition-delay:.05s">
         <span class="service-col-tag" aria-hidden="true">01 / Publishing</span>
         <h3 class="service-col-title">Publishing</h3>
@@ -1002,6 +785,7 @@ nav::before{
         </div>
         <span class="service-flag">Financial support available</span>
       </div>
+
       <div class="service-col reveal" style="transition-delay:.13s">
         <span class="service-col-tag" aria-hidden="true">02 / Digital</span>
         <h3 class="service-col-title">Digital</h3>
@@ -1009,6 +793,7 @@ nav::before{
           <p>A home for your work online. Built to last, built to let the work speak. Not a template dragged out of some builder — a considered space made for what you do.</p>
         </div>
       </div>
+
       <div class="service-col reveal" style="transition-delay:.21s">
         <span class="service-col-tag" aria-hidden="true">03 / Display</span>
         <h3 class="service-col-title">Display</h3>
@@ -1016,6 +801,7 @@ nav::before{
           <p>High-quality printing and framing. Limited runs, single pieces, installations. On the walls of the people who understand it.</p>
         </div>
       </div>
+
     </div>
   </div>
   <div class="services-tape-bot" aria-hidden="true"></div>
@@ -1032,7 +818,9 @@ nav::before{
         What are<br>you <span class="y">working</span><br>on?
       </p>
       <div class="contact-action reveal" style="transition-delay:.28s">
-        <a class="contact-email" href="mailto:hey@subliminal.press">hey@subliminal.press</a>
+        <a class="contact-email" href="mailto:hey@subliminal.press">
+          hey@subliminal.press
+        </a>
         <span class="contact-arr" aria-hidden="true">→</span>
       </div>
     </div>
