@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Subpress Cube</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; background: #ffeb3b; overflow: hidden; }
+    canvas { display: block; }
+    #hint {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      font-family: monospace; font-size: 11px; text-transform: uppercase;
+      letter-spacing: .1em; color: rgba(0,0,0,.35); pointer-events: none;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+<div id="hint">Drag to rotate · auto-twists every 4s</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls }      from 'three/addons/controls/OrbitControls.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+// ─── Renderer ────────────────────────────────────────────
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+// ─── Scene / camera ──────────────────────────────────────
+const scene  = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, 0.1, 100);
+camera.position.set(5, 4, 6);
+
+// ─── Controls ────────────────────────────────────────────
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping   = true;
+controls.dampingFactor   = 0.05;
+controls.enableZoom      = false;
+controls.enablePan       = false;
+controls.autoRotate      = true;
+controls.autoRotateSpeed = 0.5;
+controls.minPolarAngle   = Math.PI * 0.18;
+controls.maxPolarAngle   = Math.PI * 0.72;
+
+// ─── Lighting ────────────────────────────────────────────
+scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+
+const key = new THREE.DirectionalLight(0xffffff, 2.4);
+key.position.set(6, 10, 8);
+key.castShadow = true;
+key.shadow.mapSize.setScalar(1024);
+Object.assign(key.shadow.camera, { near:1, far:30, left:-5, right:5, top:5, bottom:-5 });
+scene.add(key);
+
+const fill = new THREE.DirectionalLight(0xfffde7, 0.6);
+fill.position.set(-5, 3, -4);
+scene.add(fill);
+
+const rim = new THREE.DirectionalLight(0xffeb3b, 0.25);
+rim.position.set(0, -5, -5);
+scene.add(rim);
+
+// ─── SVG → canvas texture ────────────────────────────────
+// Loads an SVG as an Image, composites it onto a dark-background canvas,
+// returns a THREE.CanvasTexture.
+const TEX_SIZE = 512;
+const DIE_BG   = '#131313';   // die surface colour
+const SVG_SCALE = 0.62;       // glyph occupies this fraction of face
+
+function svgToTexture(svgPath) {
+  return new Promise(resolve => {
+    const canvas = document.createElement('canvas');
+    canvas.width = canvas.height = TEX_SIZE;
+    const ctx = canvas.getContext('2d');
+
+    // Dark background
+    ctx.fillStyle = DIE_BG;
+    ctx.fillRect(0, 0, TEX_SIZE, TEX_SIZE);
+
+    // Subtle recessed border — slightly lighter than bg
+    ctx.strokeStyle = '#1e1e1e';
+    ctx.lineWidth = 6;
+    const pad = TEX_SIZE * 0.04;
+    ctx.beginPath();
+    ctx.roundRect(pad, pad, TEX_SIZE - pad * 2, TEX_SIZE - pad * 2, pad * 0.6);
+    ctx.stroke();
+
+    const img = new Image();
+    img.onload = () => {
+      // Centre and scale the glyph
+      const size   = TEX_SIZE * SVG_SCALE;
+      const offset = (TEX_SIZE - size) / 2;
+
+      // Shadow pass — gives the illusion of depth/emboss
+      ctx.globalAlpha = 0.55;
+      ctx.drawImage(img, offset + 2, offset + 3, size, size);   // dark shadow
+      ctx.globalAlpha = 1;
+
+      // Main glyph
+      ctx.drawImage(img, offset, offset, size, size);
+
+      resolve(new THREE.CanvasTexture(canvas));
+    };
+    img.onerror = () => {
+      // Fallback: blank face
+      resolve(new THREE.CanvasTexture(canvas));
+    };
+    img.src = svgPath;
+  });
+}
+
+// ─── Load all four textures ───────────────────────────────
+// Face keys: S, U, B, logo, blank
+async function loadTextures() {
+  const [S, U, B, logo] = await Promise.all([
+    svgToTexture('face-S.svg'),
+    svgToTexture('face-U.svg'),
+    svgToTexture('face-B.svg'),
+    svgToTexture('face-logo.svg'),
+  ]);
+  // blank = dark face, no glyph
+  const blankCanvas = document.createElement('canvas');
+  blankCanvas.width = blankCanvas.height = TEX_SIZE;
+  const bctx = blankCanvas.getContext('2d');
+  bctx.fillStyle = DIE_BG;
+  bctx.fillRect(0, 0, TEX_SIZE, TEX_SIZE);
+  const blank = new THREE.CanvasTexture(blankCanvas);
+  return { S, U, B, logo, blank };
+}
+
+// ─── Material helper ─────────────────────────────────────
+function mat(tex) {
+  return new THREE.MeshStandardMaterial({
+    map:       tex,
+    color:     new THREE.Color('#161616'),
+    roughness: 0.28,
+    metalness: 0.65,
+  });
+}
+
+// ─── Die face assignment ──────────────────────────────────
+// RoundedBoxGeometry material index order: +X, -X, +Y, -Y, +Z, -Z
+//   → right, left, top, bottom, front, back
+//
+// 8 dies in a 2×2×2 grid. Each die exposes 3 faces outward.
+// We rotate the S/U/B/logo set across all 8 so every glyph
+// appears on each layer at least once.
+//
+// Layout viewed from front:
+//   Top layer:    [TFL] [TFR]    (top-front-left / right)
+//                 [TBL] [TBR]    (top-back-left / right)
+//   Bottom layer: same mirrored
+//
+// Face sets per die [+X right, -X left, +Y top, -Y bot, +Z front, -Z back]
+
+function makeDieMats(tx, faces) {
+  // faces: { right, top, front } — visible outward faces; rest blank
+  const { right, top, front } = faces;
+  return [
+    mat(right), mat(tx.blank),  // ±X
+    mat(top),   mat(tx.blank),  // ±Y
+    mat(front), mat(tx.blank),  // ±Z
+  ];
+}
+
+// ─── Build scene once textures are ready ─────────────────
+loadTextures().then(tx => {
+  const DIE_SIZE = 0.88;
+  const GAP      = 0.065;
+  const STEP     = DIE_SIZE + GAP;
+  const H        = STEP / 2;  // half-step
+
+  const geo = new RoundedBoxGeometry(DIE_SIZE, DIE_SIZE, DIE_SIZE, 5, 0.065);
+
+  // 8 positions: x,y,z each ∈ {-H, +H}
+  // Order: iterate x outer, y middle, z inner
+  // We assign face sets so glyphs read correctly when viewed from outside
+  const dieData = [
+    // x= +H (right column), y= +H (top), z= +H (front) → TFR
+    { pos: [ H,  H,  H], faces: { right: tx.U,    top: tx.S,    front: tx.B    } },
+    // x= +H, y= +H, z= -H → TBR
+    { pos: [ H,  H, -H], faces: { right: tx.B,    top: tx.logo, front: tx.U    } },
+    // x= +H, y= -H, z= +H → BFR
+    { pos: [ H, -H,  H], faces: { right: tx.logo, top: tx.blank,front: tx.S    } },
+    // x= +H, y= -H, z= -H → BBR
+    { pos: [ H, -H, -H], faces: { right: tx.S,    top: tx.blank,front: tx.logo } },
+    // x= -H (left column), y= +H, z= +H → TFL
+    { pos: [-H,  H,  H], faces: { right: tx.blank,top: tx.U,    front: tx.logo } },
+    // x= -H, y= +H, z= -H → TBL
+    { pos: [-H,  H, -H], faces: { right: tx.blank,top: tx.B,    front: tx.S    } },
+    // x= -H, y= -H, z= +H → BFL
+    { pos: [-H, -H,  H], faces: { right: tx.blank,top: tx.blank,front: tx.U    } },
+    // x= -H, y= -H, z= -H → BBL
+    { pos: [-H, -H, -H], faces: { right: tx.blank,top: tx.blank,front: tx.B    } },
+  ];
+
+  const cubeGroup = new THREE.Group();
+  scene.add(cubeGroup);
+
+  const dieMeshes = dieData.map(({ pos, faces }) => {
+    const mesh = new THREE.Mesh(geo, makeDieMats(tx, faces));
+    mesh.position.set(...pos);
+    mesh.castShadow    = true;
+    mesh.receiveShadow = true;
+    // Store snapped grid coords for layer selection
+    mesh.userData.gx = Math.sign(pos[0]);
+    mesh.userData.gy = Math.sign(pos[1]);
+    mesh.userData.gz = Math.sign(pos[2]);
+    cubeGroup.add(mesh);
+    return mesh;
+  });
+
+  // ─── Twist animation ─────────────────────────────────────
+  let twisting = false;
+
+  // Each layer definition: which axis to rotate, which coord+value selects the layer
+  const LAYERS = [
+    { axis: new THREE.Vector3(0, 1, 0), coord: 'gy', val:  1 }, // top
+    { axis: new THREE.Vector3(0, 1, 0), coord: 'gy', val: -1 }, // bottom
+    { axis: new THREE.Vector3(1, 0, 0), coord: 'gx', val:  1 }, // right
+    { axis: new THREE.Vector3(1, 0, 0), coord: 'gx', val: -1 }, // left
+    { axis: new THREE.Vector3(0, 0, 1), coord: 'gz', val:  1 }, // front
+    { axis: new THREE.Vector3(0, 0, 1), coord: 'gz', val: -1 }, // back
+  ];
+
+  function easeInOut(t) {
+    return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+  }
+
+  function twist() {
+    if (twisting) return;
+    twisting = true;
+
+    const layer = LAYERS[Math.floor(Math.random() * LAYERS.length)];
+    const angle = (Math.random() < 0.5 ? 1 : -1) * Math.PI / 2;
+
+    // Collect dice belonging to this layer
+    const group = dieMeshes.filter(m => m.userData[layer.coord] === layer.val);
+
+    // Create a pivot group inside cubeGroup
+    const pivot = new THREE.Group();
+    cubeGroup.add(pivot);
+
+    // Re-parent dice into pivot (positions stay the same — pivot is at origin of cubeGroup)
+    group.forEach(m => {
+      const p = m.position.clone();
+      const q = m.quaternion.clone();
+      cubeGroup.remove(m);
+      pivot.add(m);
+      m.position.copy(p);
+      m.quaternion.copy(q);
+    });
+
+    const startQ = new THREE.Quaternion(); // identity
+    const endQ   = new THREE.Quaternion().setFromAxisAngle(layer.axis, angle);
+    const dur    = 800;
+    const t0     = performance.now();
+
+    function step(now) {
+      const t  = Math.min((now - t0) / dur, 1);
+      const et = easeInOut(t);
+      pivot.quaternion.slerpQuaternions(startQ, endQ, et);
+      renderer.render(scene, camera);
+
+      if (t < 1) {
+        requestAnimationFrame(step);
+        return;
+      }
+
+      // Bake pivot rotation back into each die, re-parent to cubeGroup
+      group.forEach(m => {
+        // World space position + quaternion
+        const wp = new THREE.Vector3();
+        const wq = new THREE.Quaternion();
+        m.getWorldPosition(wp);
+        m.getWorldQuaternion(wq);
+
+        pivot.remove(m);
+        cubeGroup.add(m);
+
+        // Convert back to cubeGroup local space
+        cubeGroup.worldToLocal(wp);
+        m.position.copy(wp);
+
+        const cubeWorldQ = new THREE.Quaternion();
+        cubeGroup.getWorldQuaternion(cubeWorldQ);
+        m.quaternion.copy(cubeWorldQ.invert().multiply(wq));
+
+        // Snap grid coord for the rotated axis
+        // After a 90° rotation the coord that was on this layer moves —
+        // update all three grid coords by applying the layer rotation
+        const gv = new THREE.Vector3(m.userData.gx, m.userData.gy, m.userData.gz);
+        gv.applyQuaternion(endQ);
+        m.userData.gx = Math.round(gv.x);
+        m.userData.gy = Math.round(gv.y);
+        m.userData.gz = Math.round(gv.z);
+      });
+
+      cubeGroup.remove(pivot);
+      twisting = false;
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Kick off first twist after a short delay, then every 4s
+  setTimeout(() => { twist(); setInterval(twist, 4000); }, 2000);
+
+  // ─── Resize ──────────────────────────────────────────────
+  window.addEventListener('resize', () => {
+    camera.aspect = innerWidth / innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth, innerHeight);
+  });
+
+  // ─── Render loop ─────────────────────────────────────────
+  function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  animate();
+});
+</script>
+</body>
+</html>
