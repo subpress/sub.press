@@ -36,21 +36,21 @@ controls.maxPolarAngle   = Math.PI * 0.72;
 // Mobile:  scale 1.4, shifted right so left ~30% of screen is clear,
 //          cube bleeds off the right edge (hero overflow:hidden clips it)
 let cubeGroup;
+let currentScale = 1.2;
 function applyResponsive() {
   if (!cubeGroup) return;
   const w = W();
   if (w <= 600) {
-    // Large, pushed right — left portion clear, right bleeds off screen
-    cubeGroup.scale.setScalar(1.4);
-    controls.target.set(-1.2, 0, 0); // camera looks left, cube sits right
+    currentScale = 1.4;
+    controls.target.set(-1.2, 0, 0);
   } else if (w <= 900) {
-    cubeGroup.scale.setScalar(0.85);
+    currentScale = 0.85;
     controls.target.set(0, 0, 0);
   } else {
-    // Desktop: 20% larger than original neutral size
-    cubeGroup.scale.setScalar(1.2);
+    currentScale = 1.2;
     controls.target.set(0, 0, 0);
   }
+  cubeGroup.scale.setScalar(currentScale);
   controls.update();
 }
 
