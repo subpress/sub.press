@@ -42,7 +42,7 @@ function applyResponsive() {
   const w = W();
   if (w <= 600) {
     currentScale = 1.4;
-    controls.target.set(0.5, 0, 0); // shifted left so more cube is visible
+    controls.target.set(-0.7, 0, 0); // shifted left so more cube is visible
   } else if (w <= 900) {
     currentScale = 0.85;
     controls.target.set(0, 0, 0);
