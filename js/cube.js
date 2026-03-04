@@ -260,3 +260,14 @@ Promise.all([
     bounce.pos += bounce.vel * dt;
 
     // Apply bounce Y offset and squash/stretch on top of responsive scale
+    if (cubeGroup) {
+      cubeGroup.position.y = bounce.pos * currentScale;
+      const squash = 1 - bounce.pos * 0.18;
+      const stretch = 1 + bounce.pos * 0.18;
+      cubeGroup.scale.set(currentScale * squash, currentScale * stretch, currentScale * squash);
+    }
+
+    controls.update();
+    renderer.render(scene, camera);
+  })(performance.now());
+});
