@@ -69,7 +69,21 @@
       document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
     }
 
-    // ── Pile gallery ──────────────────────────────────
+    // Nav dark/light mode
+    const nav = document.querySelector('nav');
+    const darkNavSections = document.querySelectorAll('#manifesto, #inprint, #contact');
+    const navObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) nav.classList.add('nav--dark');
+      });
+      // Only remove dark if NO dark section is intersecting
+      const anyDark = [...darkNavSections].some(el => {
+        const r = el.getBoundingClientRect();
+        return r.top <= 64 && r.bottom > 0;
+      });
+      if (!anyDark) nav.classList.remove('nav--dark');
+    }, { rootMargin: '-64px 0px 0px 0px', threshold: 0 });
+    darkNavSections.forEach(el => navObserver.observe(el));
     const pile    = document.getElementById('pile');
     if (pile) {
       const cards   = Array.from(pile.querySelectorAll('.pile-card'));
