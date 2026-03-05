@@ -114,19 +114,30 @@
         <span class="inprint-masthead-label" aria-hidden="true">In Print</span>
         <h2 class="inprint-heading reveal" id="inprint-heading">In<br>Print</h2>
       </div>
-      <div class="inprint-gallery">
-        <div class="inprint-slot reveal">
-          <img src="img/SP-Sample-FF3Tas.png" alt="" loading="lazy">
+      <div class="inprint-pile" id="pile" role="region" aria-label="Publication gallery" tabindex="0">
+        <div class="pile-card" data-pos="0" data-label="FF3 — Hydro Tasmania, 2024">
+          <img src="img/SP-Sample-FF3Tas.png" alt="FF3 Hydro Tasmania spread">
         </div>
-        <div class="inprint-slot reveal" style="transition-delay:.06s">
-          <img src="https://framerusercontent.com/images/dFjE9QNvqLjy4b695gv9gXMus0.png" alt="" loading="lazy">
+        <div class="pile-card" data-pos="1" data-label="Issue 02 — Field Notes, 2024">
+          <img src="img/SP-Sample-FF3Tas.png" alt="Issue 02 Field Notes">
         </div>
-        <div class="inprint-slot reveal" style="transition-delay:.1s">
-          <img src="https://framerusercontent.com/images/23xnED9GSwRMiLuIW7rzMH8eU.png" alt="" loading="lazy">
+        <div class="pile-card" data-pos="2" data-label="Zine — Unnamed Series, 2023">
+          <img src="img/SP-Sample-FF3Tas.png" alt="Unnamed zine">
         </div>
-        <div class="inprint-slot reveal" style="transition-delay:.14s">
-          <img src="img/SP-Sample-FF3Tas.png" alt="" loading="lazy">
+        <div class="pile-card" data-pos="3" data-label="Broadsheet — Open Call, 2023">
+          <img src="img/SP-Sample-FF3Tas.png" alt="Open call broadsheet">
         </div>
+      </div>
+
+      <div class="pile-controls">
+        <span class="pile-counter"><span id="pile-current">1</span> / <span id="pile-total">4</span></span>
+        <span class="pile-hint">Click image to cycle</span>
+        <button class="pile-btn" id="pile-next" aria-label="Next publication">
+          Next
+          <svg viewBox="0 0 12 12" fill="none">
+            <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
       </div>
     </section>
 
