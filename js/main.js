@@ -1,4 +1,8 @@
-    // Custom cursor
+    // Decode email links (prevents Cloudflare obfuscation)
+    document.querySelectorAll('.js-email').forEach(el => {
+      const addr = el.dataset.u + '@' + el.dataset.d;
+      el.href = 'mailto:' + addr;
+    });
     const cursor = document.getElementById('cursor');
     if (window.matchMedia('(pointer: fine)').matches) {
       cursor.classList.add('active');
@@ -71,19 +75,21 @@
 
     // Nav dark/light mode
     const nav = document.querySelector('nav');
-    const darkNavSections = document.querySelectorAll('#manifesto, #inprint, #contact');
-    const navObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) nav.classList.add('nav--dark');
-      });
-      // Only remove dark if NO dark section is intersecting
-      const anyDark = [...darkNavSections].some(el => {
+    const darkSectionIds = ['manifesto', 'inprint', 'contact'];
+
+    function updateNav() {
+      const navBottom = 64;
+      const isDark = darkSectionIds.some(id => {
+        const el = document.getElementById(id);
+        if (!el) return false;
         const r = el.getBoundingClientRect();
-        return r.top <= 64 && r.bottom > 0;
+        return r.top < navBottom && r.bottom > 0;
       });
-      if (!anyDark) nav.classList.remove('nav--dark');
-    }, { rootMargin: '-64px 0px 0px 0px', threshold: 0 });
-    darkNavSections.forEach(el => navObserver.observe(el));
+      nav.classList.toggle('nav--dark', isDark);
+    }
+
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
     const pile    = document.getElementById('pile');
     if (pile) {
       const cards   = Array.from(pile.querySelectorAll('.pile-card'));
