@@ -281,6 +281,7 @@ nav.nav--dark .nav-hamburger rect  { fill: var(--w); }
   display: flex;
   align-items: center;
   white-space: nowrap;
+  flex-shrink: 0;
   animation: ticker-h 28s linear infinite;
 }
 .hero-ticker-item {
@@ -303,7 +304,7 @@ nav.nav--dark .nav-hamburger rect  { fill: var(--w); }
 }
 @keyframes ticker-h {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(-100%); }
 }
 
 #hero-canvas-wrap {
