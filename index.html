@@ -57,10 +57,10 @@
   <div class="nav-mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
     <button class="nav-mobile-close" id="menuClose" aria-label="Close navigation menu">close ✕</button>
     <ul class="nav-mobile-links">
-      <li><a href="#manifesto" onclick="closeMenu()">About</a></li>
-      <li><a href="#inprint"   onclick="closeMenu()">In Print</a></li>
-      <li><a href="#services"  onclick="closeMenu()">Services</a></li>
-      <li><a href="#contact"   onclick="closeMenu()">Contact</a></li>
+      <li><a href="#manifesto">About</a></li>
+      <li><a href="#inprint">In Print</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <p class="nav-mobile-meta">Independent Publishing - London, UK</p>
   </div>
@@ -68,6 +68,7 @@
   <main id="main-content">
 
     <section id="hero" aria-label="Hero">
+      <h1 class="sr-only">Subpress — Independent Publishing, London</h1>
       <div class="hero-ticker" aria-hidden="true">
         <div class="hero-ticker-track">
           <span class="hero-ticker-item">Subliminal Press</span><span class="hero-ticker-sep">/</span>
@@ -102,7 +103,7 @@
       <div class="manifesto-inner">
         <p class="manifesto-label reveal" aria-hidden="true">About</p>
         <p class="manifesto-text reveal" style="transition-delay:.1s">
-          Subpress was founded by two friends with the mission of helping creatives bring their work to life. In a time when so much art exists only on screens, we want to ensure it’s seen, held, and appreciated.<br>We’re not in this for profit, we just want to see <em>cool shit exist</em>.
+          Subpress was founded by two friends with the mission of helping creatives bring their work to life. In a time when so much art exists only on screens, we want to ensure it's seen, held, and appreciated.<br>We're not in this for profit, we just want to see <em>cool shit exist</em>.
         </p>
       </div>
     </section>
@@ -113,20 +114,19 @@
         <h2 class="inprint-heading reveal" id="inprint-heading">In<br>Print</h2>
       </div>
       <div class="inprint-pile" id="pile" role="region" aria-label="Publication gallery" tabindex="0">
-        <div class="pile-card" data-pos="0" data-label="FF3 — Hydro Tasmania, 2024">
-          <img src="img/SP-Sample-FF3Tas.png" alt="FF3 Hydro Tasmania spread">
+        <div class="pile-card" data-pos="0" data-label= Hydro Tasmania">
+          <img src="img/SP-Sample-FF3Tas.png" alt="Hydro Tasmania">
         </div>
-        <div class="pile-card" data-pos="1" data-label="Issue 02 — Field Notes, 2024">
-          <img src="img/SP-Sample-FF3Tas.png" alt="Issue 02 Field Notes">
+        <div class="pile-card" data-pos="1" data-label="Chyoto Nihongo Gaido">
+          <img src="img/SP-Sample-CNG.png" alt="Chyoto Nihongo Gaido">
         </div>
         <div class="pile-card" data-pos="2" data-label="Zine — Unnamed Series, 2023">
           <img src="img/SP-Sample-FF3Tas.png" alt="Unnamed zine">
         </div>
         <div class="pile-card" data-pos="3" data-label="Broadsheet — Open Call, 2023">
-          <img src="img/SP-Sample-FF3Tas.png" alt="Open call broadsheet">
+          <img src="img/SP-Sample-CNG.png" alt="Open call broadsheet">
         </div>
       </div>
-
       <div class="pile-controls">
         <span class="pile-counter"><span id="pile-current">1</span> / <span id="pile-total">4</span></span>
         <span class="pile-hint">Click image to cycle</span>

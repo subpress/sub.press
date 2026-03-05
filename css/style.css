@@ -415,15 +415,17 @@ nav::before {
   padding-bottom: 4px;
   flex-shrink: 0;
 }
-.inprint-heading {
+h2 {
   font-family: var(--sora);
   font-size: clamp(80px,14vw,200px);
   font-weight: 800;
   line-height: .88;
   letter-spacing: -.04em;
-  color: var(--w);
   flex: 1;
 }
+h2.sr-only { font-size: 0; flex: none; }
+
+.inprint-heading { color: var(--w); }
 
 /* Pile gallery */
 .inprint-pile {
@@ -544,15 +546,7 @@ nav::before {
   padding-bottom: 4px;
   flex-shrink: 0;
 }
-.services-heading {
-  font-family: var(--sora);
-  font-size: clamp(80px,14vw,200px);
-  font-weight: 800;
-  line-height: .88;
-  letter-spacing: -.04em;
-  color: var(--k);
-  flex: 1;
-}
+.services-heading { color: var(--k); }
 .services-list { display: flex; flex-direction: column; }
 .service-entry {
   display: grid;
@@ -725,8 +719,7 @@ nav::before {
   .inprint-pile        { height: clamp(260px, 72vw, 480px); }
   .pile-hint           { display: none; }
 
-  .inprint-heading,
-  .services-heading    { font-size: clamp(56px,16vw,100px); }
+  h2                   { font-size: clamp(56px,16vw,100px); }
 
   .contact-line        { font-size: clamp(32px,10.5vw,60px); }
   .contact-line.indent { padding-left: clamp(16px,5vw,48px); }
