@@ -74,7 +74,7 @@ nav ul a:hover { color: var(--red); }
   background: var(--red);
   color: #fff !important;
   padding: 10px 22px;
-  border-radius: 2px;
+  border-radius: 8px;
   font-weight: 500;
   font-size: 14px;
   text-decoration: none;
@@ -83,7 +83,7 @@ nav ul a:hover { color: var(--red); }
   display: inline-block;
   margin-left: 36px;
 }
-.nav-cta:hover { background: #c9151c; transform: translateY(-1px); }
+.nav-cta:hover { background: var(--blue); transform: translateY(-1px); }
 
 /* ── HERO ── */
 #hero {
@@ -163,11 +163,11 @@ nav ul a:hover { color: var(--red); }
   font-weight: 500;
   letter-spacing: 0.04em;
   text-decoration: none;
-  border-radius: 2px;
+  border-radius: 8px;
   transition: background 0.2s, transform 0.15s;
   display: inline-block;
 }
-.btn-primary:hover { background: #c9151c; transform: translateY(-1px); }
+.btn-primary:hover { background: var(--blue); transform: translateY(-1px); }
 
 .btn-secondary {
   font-size: 14px;
