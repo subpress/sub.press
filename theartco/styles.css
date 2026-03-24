@@ -32,9 +32,13 @@ nav {
   border-bottom: 1px solid #e8e5df;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0;
   padding: 0 48px;
   height: 72px;
+}
+
+nav ul {
+  margin-left: auto; /* pushes links+CTA to the right */
 }
 
 .logo-wrap {
@@ -77,6 +81,7 @@ nav ul a:hover { color: var(--red); }
   letter-spacing: 0.03em;
   transition: background 0.2s, transform 0.15s;
   display: inline-block;
+  margin-left: 36px;
 }
 .nav-cta:hover { background: #c9151c; transform: translateY(-1px); }
 
@@ -357,7 +362,9 @@ nav ul a:hover { color: var(--red); }
 
 /* ── ARTIST CTA ── */
 #artist-cta {
-  border: none;
+  background: var(--off-white);
+  border-top: 1px solid #e8e5df;
+  border-bottom: 1px solid #e8e5df;
   padding: 80px;
   display: grid;
   grid-template-columns: 1fr auto;
@@ -474,6 +481,7 @@ footer {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1fr;
   gap: 48px;
+  text-align: center;
 }
 
 .footer-brand {
@@ -501,7 +509,7 @@ footer address {
   margin-bottom: 20px;
 }
 
-.footer-col ul { list-style: none; }
+.footer-col ul { list-style: none; text-align: center; }
 .footer-col ul li { margin-bottom: 10px; }
 .footer-col ul a {
   font-size: 14px;
@@ -537,7 +545,8 @@ footer address {
   background: #0a0a09;
   padding: 20px 80px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 48px;
   align-items: center;
   font-size: 12px;
   color: rgba(255,255,255,0.3);

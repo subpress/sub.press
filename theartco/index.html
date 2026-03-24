@@ -225,17 +225,21 @@
 
   <div class="footer-col footer-contact">
     <p class="footer-col-title">Get in touch</p>
-    <a href="mailto:info@theartco.uk">info@theartco.uk</a>
+    <a href="/cdn-cgi/l/email-protection#3950575f56794d515c584b4d5a56174c52"><span class="__cf_email__" data-cfemail="bdd4d3dbd2fdc9d5d8dccfc9ded293c8d6">[email&#160;protected]</span></a>
     <a href="tel:01189121051" class="tel">01189 121 051</a>
     <a href="https://instagram.com/theartco" target="_blank" rel="noopener">@theartco</a>
   </div>
 </footer>
 
 <div class="footer-bottom">
-  <span>© 2026 The Art Company. All rights reserved.</span>
+  <span>© <span id="copy-year"></span> The Art Company. All rights reserved.</span>
+  <span>Wokingham, Berkshire</span>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* ── DYNAMIC YEAR ── */
+  document.getElementById('copy-year').textContent = new Date().getFullYear();
+
   /* ── TYPEWRITER ── */
   const words = ['framing.', 'printing.', 'expertise.'];
   const el = document.getElementById('typewriter');
