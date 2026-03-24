@@ -197,7 +197,7 @@ nav ul a:hover { color: var(--red); }
 
 /* ── SERVICES ── */
 #services {
-  padding: 120px 80px;
+  padding: 80px 80px;
 }
 
 .section-label {
@@ -216,8 +216,6 @@ nav ul a:hover { color: var(--red); }
   margin-bottom: 0;
 }
 
-/* CHANGE 1: align-items start so name + description sit at the top of the image */
-/* CHANGE 2: no grey borders on service rows */
 .service-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -280,71 +278,15 @@ nav ul a:hover { color: var(--red); }
 .service-row.reverse { direction: rtl; }
 .service-row.reverse > * { direction: ltr; }
 
-/* ── FRAME SAMPLE STRIP ── */
-#frames {
-  position: relative;
-  height: 500px;
-  overflow: hidden;
-}
-
-.frames-strip {
-  display: flex;
-  height: 100%;
-}
-
-.frame-col {
-  flex: 1;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.2s ease;
-}
-
-.fc1 { background: linear-gradient(135deg, #8B7355, #6B5A3E); }
-.fc2 { background: linear-gradient(135deg, #4A7C59, #2D5A3D); }
-.fc3 { background: linear-gradient(135deg, #C4A45A, #9B7B2E); }
-.fc4 { background: linear-gradient(135deg, #8B5E3C, #6B4226); }
-.fc5 { background: linear-gradient(135deg, #5B7FA6, #3A5F82); }
-.fc6 { background: linear-gradient(135deg, #A4596B, #7A3348); }
-.fc7 { background: linear-gradient(135deg, #7B8A4A, #5A672E); }
-
-.frames-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255,255,255,0.97);
-  padding: 48px 56px;
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-  border-radius: 2px;
-}
-
-.frames-overlay h2 {
-  font-family: var(--serif);
-  font-size: 28px;
-  font-weight: 400;
-  margin-bottom: 16px;
-  color: var(--black);
-}
-
-.frames-overlay p {
-  font-size: 15px;
-  color: var(--mid);
-  line-height: 1.7;
-  margin-bottom: 24px;
-}
-
 /* ── OUR WORK ── */
 #work {
   padding: 120px 80px;
 }
 
-/* CHANGE 3: no grey border on section headers */
 .section-header {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: center; /* centred */
   margin-bottom: 48px;
   padding-bottom: 24px;
 }
@@ -415,9 +357,7 @@ nav ul a:hover { color: var(--red); }
 
 /* ── ARTIST CTA ── */
 #artist-cta {
-  background: var(--off-white);
-  border-top: 1px solid #e8e5df;
-  border-bottom: 1px solid #e8e5df;
+  border: none;
   padding: 80px;
   display: grid;
   grid-template-columns: 1fr auto;
@@ -448,7 +388,8 @@ nav ul a:hover { color: var(--red); }
 
 /* ── HOW IT WORKS ── */
 #how {
-  padding: 120px 80px;
+  padding: 80px 80px;
+  text-align: center; /* centres the title and the steps grid label */
 }
 
 .steps-grid {
@@ -513,6 +454,7 @@ nav ul a:hover { color: var(--red); }
   display: flex;
   align-items: center;
   gap: 24px;
+  text-align: left; /* override the section-level centre for this block */
 }
 .how-note-label {
   font-size: 11px;
