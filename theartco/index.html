@@ -218,33 +218,35 @@
       </address>
     </div>
 
-    <div class="footer-col">
-      <p class="footer-col-title">Opening hours</p>
-      <div class="footer-hours">
-        Mon 10am–5pm<br>
-        Tue 10am–5pm<br>
-        Wed 10am–5pm<br>
-        Thu 10am–5pm<br>
-        Fri 10am–5pm<br>
-        <span style="color:rgba(255,255,255,0.35);font-size:13px;margin-top:4px;display:block">Closed weekends &amp; Bank Holidays</span>
+    <div class="footer-right-group">
+      <div class="footer-col">
+        <p class="footer-col-title">Opening hours</p>
+        <div class="footer-hours">
+          Mon 10am–5pm<br>
+          Tue 10am–5pm<br>
+          Wed 10am–5pm<br>
+          Thu 10am–5pm<br>
+          Fri 10am–5pm<br>
+          <span style="color:rgba(255,255,255,0.35);font-size:13px;margin-top:4px;display:block">Closed weekends &amp; Bank Holidays</span>
+        </div>
       </div>
-    </div>
 
-    <div class="footer-col">
-      <p class="footer-col-title">Navigate</p>
-      <ul>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#work">Our Work</a></li>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Navigate</p>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#work">Our Work</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
 
-    <div class="footer-col footer-contact">
-      <p class="footer-col-title">Get in touch</p>
-      <a href="mailto:info@theartco.uk">info@theartco.uk</a>
-      <a href="tel:01189121051" class="tel">01189 121 051</a>
-      <a href="https://instagram.com/theartco" target="_blank" rel="noopener">@theartco</a>
+      <div class="footer-col footer-contact">
+        <p class="footer-col-title">Get in touch</p>
+        <a href="mailto:info@theartco.uk">info@theartco.uk</a>
+        <a href="tel:01189121051" class="tel">01189 121 051</a>
+        <a href="https://instagram.com/theartco" target="_blank" rel="noopener">@theartco</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -259,6 +261,12 @@
 <script>
   /* ── DYNAMIC YEAR ── */
   document.getElementById('copy-year').textContent = new Date().getFullYear();
+
+  /* ── NAV SCROLL BORDER ── */
+  const nav = document.querySelector('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // run once on load in case page is already scrolled
 
   /* ── TYPEWRITER ── */
   const words = ['framing.', 'printing.', 'expertise.'];

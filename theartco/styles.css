@@ -10,7 +10,7 @@
   --serif:     'Playfair Display', Georgia, serif;
   --sans:      'DM Sans', system-ui, sans-serif;
   --max-w:     1200px;
-  --nav-max-w: 1800px;
+  --nav-max-w: 1400px;
 }
 
 html { scroll-behavior: smooth; }
@@ -45,11 +45,16 @@ nav {
   top: 0;
   z-index: 100;
   background: #fff;
-  border-bottom: 1px solid #e8e5df;
+  border-bottom: 1px solid transparent;
   height: 72px;
   display: flex;
   align-items: center;
-  justify-content: center; /* centres the inner edge-container */
+  justify-content: center;
+  transition: border-color 0.3s ease;
+}
+
+nav.scrolled {
+  border-bottom-color: #e8e5df;
 }
 
 .nav-inner {
@@ -506,10 +511,20 @@ footer {
 
 .footer-inner {
   width: min(90vw, var(--nav-max-w));
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+}
+
+/* Brand col — anchored left, takes available space */
+.footer-inner > div:first-child {
+  flex: 1;
+}
+
+/* Right group — three cols tighter together, anchored right */
+.footer-right-group {
+  display: flex;
   gap: 48px;
-  text-align: left;
 }
 
 .footer-brand {
