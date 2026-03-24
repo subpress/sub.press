@@ -4,7 +4,7 @@
   --red:       #ed1c24;
   --blue:      #0e97e2;
   --yellow:    #f9d53d;
-  --black:     #111110;
+  --black:     #0d1120;
   --off-white: #f8f6f2;
   --mid:       #6b6960;
   --serif:     'Playfair Display', Georgia, serif;
@@ -115,7 +115,6 @@ nav ul a:hover { color: var(--red); }
 .hero-title em {
   font-style: italic;
   color: var(--red);
-  /* reserve space for the longest word so layout doesn't jump */
   display: inline-block;
   min-width: 0;
 }
@@ -183,7 +182,6 @@ nav ul a:hover { color: var(--red); }
 /* Hero image — responsive square, anchored right */
 .hero-right {
   flex-shrink: 0;
-  /* Square: clamp between 260px and 520px, never more than 42% of viewport */
   width: clamp(260px, 38vw, 520px);
   aspect-ratio: 1 / 1;
   overflow: hidden;
@@ -208,18 +206,25 @@ nav ul a:hover { color: var(--red); }
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--mid);
-  margin-bottom: 64px;
+  margin-bottom: 24px;
 }
 
+/* "what we do" header — matches .section-header style but no border */
+.services-header {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* CHANGE 1: align-items start so name + description sit at the top of the image */
+/* CHANGE 2: no grey borders on service rows */
 .service-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
+  align-items: start;
   gap: 80px;
   padding: 64px 0;
-  border-top: 1px solid #e8e5df;
 }
-.service-row:last-child { border-bottom: 1px solid #e8e5df; }
 
 .service-name {
   font-family: var(--serif);
@@ -335,12 +340,12 @@ nav ul a:hover { color: var(--red); }
   padding: 120px 80px;
 }
 
+/* CHANGE 3: no grey border on section headers */
 .section-header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   margin-bottom: 48px;
-  border-bottom: 1px solid #e8e5df;
   padding-bottom: 24px;
 }
 
