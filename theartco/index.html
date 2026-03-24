@@ -119,7 +119,7 @@
 <section id="how">
   <div class="container">
 
-    <h2 class="section-title fade-up" style="font-size:40px;font-family:'Playfair Display',serif;font-weight:400;margin-bottom:0">how it works<span style="color:var(--red)">.</span></h2>
+    <h2 class="section-title fade-up">how it works<span style="color:var(--red)">.</span></h2>
 
     <div class="steps-grid fade-up">
       <div class="step-item">
@@ -160,16 +160,11 @@
       <h2 class="section-title">our work<span class="dot">.</span></h2>
     </div>
     <div class="work-grid fade-up">
-      <div class="work-item wc1">
-      </div>
-      <div class="work-item wc2">
-      </div>
-      <div class="work-item wc3">
-      </div>
-      <div class="work-item wc4">
-      </div>
-      <div class="work-item wc5">
-      </div>
+      <div class="work-item wc1"></div>
+      <div class="work-item wc2"></div>
+      <div class="work-item wc3"></div>
+      <div class="work-item wc4"></div>
+      <div class="work-item wc5"></div>
     </div>
     <div class="work-instagram">
       <a href="https://instagram.com/theartco" class="btn-primary" target="_blank" rel="noopener">go to instagram</a>
@@ -179,7 +174,6 @@
 </section>
 
 <!-- ── ARTIST CTA ── -->
-<!-- Full-bleed background, .container used inside for content width -->
 <div id="artist-cta">
   <div class="container">
     <div class="artist-cta-text fade-up">
@@ -260,7 +254,7 @@
   const nav = document.querySelector('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 10);
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // run once on load in case page is already scrolled
+  onScroll();
 
   /* ── TYPEWRITER ── */
   const words = ['framing.', 'printing.', 'expertise.'];
