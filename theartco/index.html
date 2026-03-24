@@ -14,7 +14,7 @@
 <!-- ── NAVIGATION ── -->
 <nav>
   <a href="#" class="logo-wrap" aria-label="the art company">
-    <img src="img/theartco-logo.svg">
+    <img src="img/theartco-logo.svg" class="logo-img" alt="The Art Company">
   </a>
 
   <ul>
@@ -34,19 +34,20 @@
 
 <!-- ── HERO ── -->
 <section id="hero">
-  <div class="hero-left fade-up">
-    <p class="hero-eyebrow">Wokingham, Berkshire</p>
-    <h1 class="hero-title">local<br><em>framing.</em></h1>
-    <p class="hero-tagline">trusted since 1992.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">get in touch</a>
-      <a href="#work" class="btn-secondary">see our work</a>
+  <div class="hero-inner">
+    <div class="hero-left fade-up">
+      <h1 class="hero-title">
+        local<br>
+        <em><span id="typewriter" aria-live="polite"></span><span class="cursor">|</span></em>
+      </h1>
+      <p class="hero-tagline">trusted since 1992.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">get in touch</a>
+        <a href="#work" class="btn-secondary">see our work</a>
+      </div>
     </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-image-placeholder">
-      <!-- Replace src with your studio/workspace image -->
-      <img src="img/gina-sample.jpeg">
+    <div class="hero-right">
+      <img src="img/gina-sample.jpeg" alt="The Art Company studio">
     </div>
   </div>
 </section>
@@ -260,28 +261,67 @@
 </div>
 
 <script>
-  // Scroll-triggered fade-in
-  const observer = new IntersectionObserver((entries) => {
+  /* ── TYPEWRITER ── */
+  const words = ['framing.', 'printing.', 'expertise.'];
+  const el = document.getElementById('typewriter');
+  let wordIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+  let paused = false;
+
+  const TYPE_SPEED   = 90;
+  const DELETE_SPEED = 55;
+  const PAUSE_AFTER  = 1800; /* hold before deleting */
+  const PAUSE_BEFORE = 350;  /* gap before next word */
+
+  function tick() {
+    const word = words[wordIndex];
+
+    if (!deleting && !paused) {
+      charIndex++;
+      el.textContent = word.slice(0, charIndex);
+      if (charIndex === word.length) {
+        paused = true;
+        setTimeout(() => { paused = false; deleting = true; tick(); }, PAUSE_AFTER);
+        return;
+      }
+      setTimeout(tick, TYPE_SPEED);
+
+    } else if (deleting) {
+      charIndex--;
+      el.textContent = word.slice(0, charIndex);
+      if (charIndex === 0) {
+        deleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        setTimeout(tick, PAUSE_BEFORE);
+        return;
+      }
+      setTimeout(tick, DELETE_SPEED);
+    }
+  }
+  tick();
+
+  /* ── SCROLL FADE-IN ── */
+  const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+        fadeObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
 
-  // Stagger children in grids
   document.querySelectorAll('.work-grid, .steps-grid').forEach(grid => {
     [...grid.children].forEach((child, i) => {
       child.style.transitionDelay = (i * 0.08) + 's';
       child.classList.add('fade-up');
-      observer.observe(child);
+      fadeObserver.observe(child);
     });
   });
 
-  // Frame columns parallax-lite on mouse
+  /* ── FRAME STRIP PARALLAX ── */
   const strip = document.querySelector('.frames-strip');
   if (strip) {
     document.getElementById('frames').addEventListener('mousemove', (e) => {
@@ -289,18 +329,15 @@
       const rect = strip.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       cols.forEach((col, i) => {
-        const offset = (i - 3) * 6 * (x - 0.5);
-        col.style.transform = `translateX(${offset}px)`;
+        col.style.transform = `translateX(${(i - 3) * 6 * (x - 0.5)}px)`;
       });
     });
     document.getElementById('frames').addEventListener('mouseleave', () => {
-      strip.querySelectorAll('.frame-col').forEach(col => {
-        col.style.transform = '';
-      });
+      strip.querySelectorAll('.frame-col').forEach(col => col.style.transform = '');
     });
   }
 
-  // Mobile nav toggle (basic)
+  /* ── MOBILE NAV ── */
   document.querySelector('.nav-mobile-toggle').addEventListener('click', () => {
     const ul = document.querySelector('nav ul');
     const cta = document.querySelector('nav .nav-cta');
