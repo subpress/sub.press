@@ -390,7 +390,7 @@ nav ul a:hover { color: var(--red); }
 
 .steps-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0;
   margin-top: 64px;
   position: relative;
